@@ -13,4 +13,6 @@
     <string name="my_cars">MY CARS</string>
     <string name="quick_actions">QUICK ACTIONS</string>
     <string name="logo_auto_studio">Logo Auto Studio</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
 </resources>
