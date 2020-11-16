@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,20 +11,24 @@
     tools:context=".MainActivity">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout" />
+        android:id="@+id/top_bottom_nav"
+        layout="@layout/top_bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/quickActions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
         android:layout_marginTop="20dp"
-        android:text="@string/quick_actions"
         android:fontFamily="@font/salvatore_regular"
         android:letterSpacing="0.3"
+        android:text="@string/quick_actions"
         android:textColor="#B3FFFFFF"
-        android:textSize="8pt" />
+        android:textSize="8pt"
+        app:layout_constraintTop_toTopOf="@id/top_bottom_nav" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScroll"
@@ -111,4 +116,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
