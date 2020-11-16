@@ -9,6 +9,6 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout" />
+        layout="@layout/top_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

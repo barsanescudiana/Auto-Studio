@@ -1,13 +1,17 @@
 package com.example.autostudio;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     public Car testCar = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
             1400, 95, 10.7, itp, rca);
+    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
+            1400, 95, 10.7, itp, rca);
+    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
+            1400, 95, 10.7, itp, rca);
 
     public ArrayList<Car> carArrayList = new ArrayList<>();
 
@@ -34,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         carArrayList.add(testCar);
+        carArrayList.add(testCar2);
+        carArrayList.add(testCar3);
 
         newTrip = (Button) findViewById(R.id.newTrip);
         refill = (Button) findViewById(R.id.refill);
@@ -71,5 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
+
+//        Window window = this.getWindow();
+//
+//// clear FLAG_TRANSLUCENT_STATUS flag:
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//
+//// finally change the color
+//        window.setStatusBarColor(ContextCompat.getColor(this, R.color.toolbarTitle));
+
     }
 }

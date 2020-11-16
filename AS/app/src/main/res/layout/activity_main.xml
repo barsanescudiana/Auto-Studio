@@ -1,119 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#100F12"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#100F12"
-    android:foregroundTint="@color/colorAccent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+            <TextView
+                android:id="@+id/quickActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="96dp"
+                android:fontFamily="@font/salvatore_regular"
+                android:letterSpacing="0.3"
+                android:text="@string/quick_actions"
+                android:textColor="#B3FFFFFF"
+                android:textSize="8pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/top_bottom_nav" />
 
-    <include
-        android:id="@+id/top_bottom_nav"
-        layout="@layout/top_bottom_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <HorizontalScrollView
+                android:id="@+id/horizontalScroll"
+                android:layout_width="436.6dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/quickActions">
 
-    <TextView
-        android:id="@+id/quickActions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/salvatore_regular"
-        android:letterSpacing="0.3"
-        android:text="@string/quick_actions"
-        android:textColor="#B3FFFFFF"
-        android:textSize="8pt"
-        app:layout_constraintTop_toTopOf="@id/top_bottom_nav" />
+                <LinearLayout
+                    style="?android:attr/buttonBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:orientation="horizontal">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScroll"
-        android:layout_width="436.6dp"
-        android:layout_height="140dp">
+                    <Button
+                        android:id="@+id/newTrip"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:background="@drawable/new_trip_btn"
+                        android:gravity="center"
+                        tools:ignore="ObsoleteLayoutParam" />
 
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/refill"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="-40dp"
+                        android:background="@drawable/refill_btn"
+                        tools:ignore="ObsoleteLayoutParam" />
 
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:id="@+id/newTrip"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:background="@drawable/new_trip_btn"
-                android:gravity="center"
-                tools:ignore="ObsoleteLayoutParam" />
+                    <Button
+                        android:id="@+id/docs"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="154dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="-40dp"
+                        android:background="@drawable/docs_btn"
+                        tools:ignore="ObsoleteLayoutParam" />
 
-            <Button
-                android:id="@+id/refill"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="170dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="-40dp"
-                android:background="@drawable/refill_btn"
-                tools:ignore="ObsoleteLayoutParam" />
-
-            <Button
-                android:id="@+id/docs"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="154dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="-40dp"
-                android:background="@drawable/docs_btn"
-                tools:ignore="ObsoleteLayoutParam" />
-
-        </LinearLayout>
+                </LinearLayout>
 
 
-    </HorizontalScrollView>
+            </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/myCars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="0dp"
-        android:text="@string/my_cars"
-        android:fontFamily="@font/salvatore_regular"
-        android:letterSpacing="0.3"
-        android:textColor="#B3FFFFFF"
-        android:textSize="8pt" />
+            <TextView
+                android:id="@+id/myCars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/salvatore_regular"
+                android:letterSpacing="0.3"
+                android:text="@string/my_cars"
+                android:textColor="#B3FFFFFF"
+                android:textSize="8pt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScroll" />
 
     <ListView
         android:id="@+id/carList"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        android:textFilterEnabled="false" />
+        android:layout_height="280dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2dp"
+        android:textFilterEnabled="false"
+        app:layout_constraintBottom_toBottomOf="@+id/top_bottom_nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myCars"
+        app:layout_constraintVertical_bias="0.065" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/add_car"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <include
+                android:id="@+id/top_bottom_nav"
+                layout="@layout/top_bottom_nav"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
