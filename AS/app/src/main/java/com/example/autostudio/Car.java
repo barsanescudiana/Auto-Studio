@@ -24,6 +24,7 @@ public class Car {
                double avgConsumption, Date expDateRCA, Date expDateITP) {
         this.brand = brand;
         this.model = model;
+        //brother
         this.fuel = fuel;
         this.km = km;
         this.color = color;
