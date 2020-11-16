@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AutoStudio</string>
+    <string name="car_list_hint">Car Name</string>
+    <string name="car_list_details">Car details</string>
+    <string name="rca">RCA</string>
+    <string name="itp">ITP</string>
+    <string name="my_cars">M Y C A R S</string>
+    <string name="quick_actions">Q U I C K A C T I O N S</string>
 </resources>

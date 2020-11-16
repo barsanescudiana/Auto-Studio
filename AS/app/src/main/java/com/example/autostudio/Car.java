@@ -1,8 +1,10 @@
 package com.example.autostudio;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Car {
+public class Car implements Serializable {
     private String brand;
     private String model;
     private String fuel;
@@ -13,6 +15,7 @@ public class Car {
     private double avgConsumption;
     private Date expDateRCA;
     private Date expDateITP;
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 
     private double tankCapacity;
 
@@ -30,8 +33,8 @@ public class Car {
         this.engineCapacity = engineCapacity;
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
-        this.expDateRCA = expDateRCA;
-        this.expDateITP = expDateITP;
+        this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
+        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
     public String getBrand() {

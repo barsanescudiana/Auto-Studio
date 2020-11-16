@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginTop="20dp"
-        android:text="Q U I C K   A C T I O N S"
+        android:text="@string/quick_actions"
         android:textColor="#B3FFFFFF"
         android:textSize="16sp" />
 
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginTop="0dp"
-        android:text="M Y   C A R S"
+        android:text="@string/my_cars"
         android:textColor="#B3FFFFFF"
         android:textSize="16sp" />
 
