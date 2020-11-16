@@ -9,10 +9,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:background="@drawable/header_bg"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
 
     <TextView
         android:id="@+id/quickActions"
@@ -21,8 +20,10 @@
         android:layout_marginStart="33dp"
         android:layout_marginTop="20dp"
         android:text="@string/quick_actions"
+        android:fontFamily="@font/salvatore_regular"
+        android:letterSpacing="0.3"
         android:textColor="#B3FFFFFF"
-        android:textSize="16sp" />
+        android:textSize="8pt" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScroll"
@@ -82,8 +83,10 @@
         android:layout_marginStart="33dp"
         android:layout_marginTop="0dp"
         android:text="@string/my_cars"
+        android:fontFamily="@font/salvatore_regular"
+        android:letterSpacing="0.3"
         android:textColor="#B3FFFFFF"
-        android:textSize="16sp" />
+        android:textSize="8pt" />
 
     <ListView
         android:id="@+id/carList"

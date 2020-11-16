@@ -5,8 +5,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
-
+    <style name="appTitle">
+        <item name="android:fontFamily">@font/salvatore_bold</item>
+        <item name="android:textSize">12pt</item>
+        <item name="android:textColor">@color/toolbarTitle</item>
     </style>
 
     <style name="carListText">

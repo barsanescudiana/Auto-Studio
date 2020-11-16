@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/header_bg"
+    app:logo="@drawable/logo_auto_studio"
+    app:title="@string/app_name"
+    app:titleMarginStart="30dp"
+    app:titleTextAppearance="@style/appTitle">
+
+    <Button
+        android:id="@+id/userPic"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/user_pic" />
+
+</androidx.appcompat.widget.Toolbar>

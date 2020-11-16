@@ -4,12 +4,13 @@
     <string name="car_list_details">Car details</string>
     <string name="rca">RCA</string>
     <string name="itp">ITP</string>
-    <string name="my_cars">M Y C A R S</string>
-    <string name="quick_actions">Q U I C K A C T I O N S</string>
     <string name="car_name">Car name</string>
     <string name="total_km">Total KM</string>
     <string name="range">Range</string>
     <string name="to_itp">To ITP</string>
     <string name="average">Average</string>
     <string name="status">S T A T U S</string>
+    <string name="my_cars">MY CARS</string>
+    <string name="quick_actions">QUICK ACTIONS</string>
+    <string name="logo_auto_studio">Logo Auto Studio</string>
 </resources>

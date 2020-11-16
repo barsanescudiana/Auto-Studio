@@ -7,4 +7,8 @@
     tools:context=".RefillActivity"
     android:background="#100F12">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
