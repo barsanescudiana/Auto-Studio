@@ -1,7 +1,10 @@
 package com.example.autostudio;
 
 import android.content.Intent;
+import android.graphics.BlendMode;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -50,10 +54,13 @@ public class MainActivity extends AppCompatActivity {
         docs = (Button) findViewById(R.id.docs);
 
         newTrip.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                Intent tripIntent = new Intent(getApplicationContext(), TripActivity.class);
-                startActivity(tripIntent);
+//                Intent tripIntent = new Intent(getApplicationContext(), TripActivity.class);
+//                startActivity(tripIntent);
+//              //mainframelayout.getForeground().setAlpha(220)
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment, new NewTripFragment()).commit();
             }
         });
 
