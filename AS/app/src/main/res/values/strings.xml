@@ -28,4 +28,15 @@
     <string name="done">Done</string>
     <string name="insert_number_of_liters">Insert number of liters</string>
     <string name="upload_document">Upload new document</string>
+    <string name="new_car">New Car</string>
+    <string name="brand">Brand</string>
+    <string name="Renault">Renault</string>
+    <string name="model">Model</string>
+    <string name="clio">Clio</string>
+    <string name="fuel">Fuel</string>
+    <string name="petrol">Petrol</string>
+    <string name="km_number">240K</string>
+    <string name="km_t">KM</string>
+    <string name="color">Color</string>
+    <string name="next">Next</string>
 </resources>

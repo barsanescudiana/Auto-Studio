@@ -6,7 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#100F12"
-        android:orientation="vertical"
         tools:context=".MainActivity">
 
             <TextView
@@ -25,7 +24,8 @@
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScroll"
-                android:layout_width="436.6dp"
+                android:layout_width="wrap_content"
+                android:clipChildren="true"
                 android:layout_height="140dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +72,18 @@
                         android:background="@drawable/docs_btn"
                         tools:ignore="ObsoleteLayoutParam" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/docs2"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="154dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="-40dp"
+                        android:background="@drawable/docs_btn"
+                        tools:ignore="ObsoleteLayoutParam" />
 
+                </LinearLayout>
 
             </HorizontalScrollView>
 

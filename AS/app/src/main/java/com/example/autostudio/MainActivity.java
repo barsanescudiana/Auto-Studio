@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private Button newTrip;
     private Button refill;
     private Button docs;
+    private Button addCar;
 
     private ListView carList;
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         newTrip = (Button) findViewById(R.id.newTrip);
         refill = (Button) findViewById(R.id.refill);
         docs = (Button) findViewById(R.id.docs);
+        addCar = (Button) findViewById(R.id.nav_add);
 
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -114,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        addCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addCarIntent = new Intent(getApplicationContext(), AddCarActivity1.class);
+                addCarIntent.putExtra("user", user);
+                startActivity(addCarIntent);
+            }
+        });
 
         carList = (ListView) findViewById(R.id.carList);
 
