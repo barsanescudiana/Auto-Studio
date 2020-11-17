@@ -2,6 +2,8 @@ package com.example.autostudio;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -49,6 +51,7 @@ public class User implements Serializable {
         this.userPhoto = userPhoto;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
