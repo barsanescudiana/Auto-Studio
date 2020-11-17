@@ -22,6 +22,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private User user;
+
     private Button newTrip;
     private Button refill;
     private Button docs;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("User");
 
         carArrayList.add(testCar);
         carArrayList.add(testCar2);
