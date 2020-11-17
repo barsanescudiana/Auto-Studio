@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             1400, 95, 10.7, itp, rca);
     public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
             1400, 95, 10.7, itp, rca);
-    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Red",
+    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
             1400, 95, 10.7, itp, rca);
 
     public ArrayList<Car> carArrayList = new ArrayList<>();
@@ -109,13 +110,25 @@ public class MainActivity extends AppCompatActivity {
         docs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DocsFragment()).commit();
+                Intent docsIntent = new Intent(getApplicationContext(), DocsActivity.class);
+                docsIntent.putExtra("User", user);
+                startActivity(docsIntent);
 
             }
         });
 
 
         carList = (ListView) findViewById(R.id.carList);
+
+        carList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Car selectedCar = carArrayList.get(position);
+                Intent carIntent = new Intent(getApplicationContext(), CarActivity.class);
+                carIntent.putExtra("selectedCar", selectedCar);
+                startActivity(carIntent);
+            }
+        });
 
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);

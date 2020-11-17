@@ -25,7 +25,8 @@
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScroll"
-                android:layout_width="436.6dp"
+                android:clipChildren="true"
+                android:layout_width="wrap_content"
                 android:layout_height="140dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +71,17 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="-40dp"
                         android:background="@drawable/docs_btn"
+                        tools:ignore="ObsoleteLayoutParam" />
+
+                    <Button
+                        android:id="@+id/docs2"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="-1dp"
+                        android:background="@drawable/weather"
                         tools:ignore="ObsoleteLayoutParam" />
 
                 </LinearLayout>

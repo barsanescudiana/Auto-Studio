@@ -28,4 +28,5 @@
     <string name="done">Done</string>
     <string name="insert_number_of_liters">Insert number of liters</string>
     <string name="upload_document">Upload new document</string>
+    <string name="my_docs">MY DOCS</string>
 </resources>
