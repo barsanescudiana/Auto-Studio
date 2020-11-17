@@ -33,7 +33,7 @@ public class AddCarActivity1 extends AppCompatActivity {
             Log.d("User", user.toString());
         }
 
-        addCarNav = (Button) findViewById(R.id.nav_add);
+        addCarNav = (Button) findViewById(R.id.btn_add);
         addCarNav.setVisibility(View.GONE);
         toolbar = (Toolbar) findViewById(R.id.toolbar2);
         toolbar.setTitle(R.string.new_car);

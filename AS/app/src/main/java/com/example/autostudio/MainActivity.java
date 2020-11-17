@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         newTrip = (Button) findViewById(R.id.newTrip);
         refill = (Button) findViewById(R.id.refill);
         docs = (Button) findViewById(R.id.docs);
-        addCar = (Button) findViewById(R.id.nav_add);
+        addCar = (Button) findViewById(R.id.btn_add);
 
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
