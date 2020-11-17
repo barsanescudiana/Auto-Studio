@@ -152,7 +152,6 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/avg"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/salvatore_bold"
@@ -161,6 +160,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/avg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/salvatore_regular"
@@ -172,6 +172,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/newEvent"
         android:layout_width="246dp"
         android:layout_height="84dp"
         android:layout_gravity="center"
