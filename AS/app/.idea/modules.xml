@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1025063286/AutoStudio.iml" filepath="$PROJECT_DIR$/.idea/modules/1025063286/AutoStudio.iml" group="AutoStudio" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="AutoStudio/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1025063286/AutoStudio.iml" filepath="$PROJECT_DIR$/.idea/modules/1025063286/AutoStudio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AutoStudio.app.iml" filepath="$PROJECT_DIR$/.idea/modules/AutoStudio.app.iml" />
     </modules>
   </component>
 </project>
