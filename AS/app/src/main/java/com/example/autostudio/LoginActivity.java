@@ -19,10 +19,10 @@ import com.google.android.gms.tasks.Task;
 
 public class LoginActivity extends AppCompatActivity {
 
-    final int RC_SIGN_IN = 0;
-    SignInButton signInButton;
-    GoogleSignInClient gsc;
-    User user;
+    private final int RC_SIGN_IN = 0;
+    private SignInButton signInButton;
+    private GoogleSignInClient gsc;
+    private User user;
 
 
     @Override
@@ -62,10 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             if (account != null) {
-                user.setUserDisplayName(account.getDisplayName());
-                user.setUserEmail(account.getEmail());
-                user.setUserId(account.getId());
-                user.setUserPhoto(account.getPhotoUrl());
+                user = new User(account.getId(), account.getDisplayName(),
+                        account.getEmail(), account.getPhotoUrl().toString());
             }
 
             updateUI(account);
@@ -78,8 +76,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        // te tine minte de prima data cand te loghezi
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        //GoogleSignInAccount account = null;
         if (account != null)
             updateUI(account);
     }
