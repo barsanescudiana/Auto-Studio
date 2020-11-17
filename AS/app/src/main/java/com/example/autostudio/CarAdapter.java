@@ -1,6 +1,8 @@
 package com.example.autostudio;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +71,38 @@ public class CarAdapter extends ArrayAdapter<Car> {
             }  else {
                 Button btnITP = (Button) view.findViewById(R.id.btn_ITP);
                 btnITP.setBackgroundResource(R.drawable.btn_red);
+            }
+            View card_bg = view.findViewById(R.id.card_bg);
+
+            switch (testCar.getColor()){
+                case "Blue":
+                    card_bg.setBackgroundResource(R.drawable.blue_card);
+                    break;
+                case "Gray":
+                    card_bg.setBackgroundResource(R.drawable.grey_card);
+                    break;
+                case "Green":
+                    card_bg.setBackgroundResource(R.drawable.green_card);
+                    break;
+                case "Black":
+                    card_bg.setBackgroundResource(R.drawable.black_card);
+                    break;
+                case "Red":
+                    card_bg.setBackgroundResource(R.drawable.red_card);
+                    break;
+                case "Yellow":
+                    card_bg.setBackgroundResource(R.drawable.yellow_card);
+                    break;
+                case "Purple":
+                    card_bg.setBackgroundResource(R.drawable.purple_card);
+                    break;
+                case "White":
+                    card_bg.setBackgroundResource(R.drawable.white_card);
+                    TextView carNameText = view.findViewById(R.id.carName);
+                    carNameText.setTextColor(Color.parseColor("#000000"));
+                    TextView carDetailsText = view.findViewById(R.id.carDetails);
+                    carDetailsText.setTextColor(Color.BLACK);
+                    break;
             }
 
         }

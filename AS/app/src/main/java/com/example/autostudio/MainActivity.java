@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Car testCar = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
             1400, 95, 10.7, itp, rca);
-    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
+    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
             1400, 95, 10.7, itp, rca);
-    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
+    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Red",
             1400, 95, 10.7, itp, rca);
 
     public ArrayList<Car> carArrayList = new ArrayList<>();
@@ -72,19 +72,15 @@ public class MainActivity extends AppCompatActivity {
         refill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent refillIntent = new Intent(getApplicationContext(), RefillActivity.class);
-                startActivity(refillIntent);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment, new RefillFragment()).commit();
             }
         });
 
         docs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent docsIntent = new Intent(getApplicationContext(), DocsActivity.class);
-                startActivity(docsIntent);
-                Date current = new Date();
-                Log.e("ITP", "\n" + testCar.getExpDateITP().toString() + "\n" + current.toString());
-                Log.e("\n\nRCA",  "\n" + testCar.getExpDateRCA().toString() + "\n" + current.toString());
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DocsFragment()).commit();
+
             }
         });
 
@@ -93,17 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
-
-//        Window window = this.getWindow();
-//
-//// clear FLAG_TRANSLUCENT_STATUS flag:
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//
-//// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//
-//// finally change the color
-//        window.setStatusBarColor(ContextCompat.getColor(this, R.color.toolbarTitle));
 
     }
 }
