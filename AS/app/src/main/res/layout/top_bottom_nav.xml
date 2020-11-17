@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/top_bottom_nav_xml"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,13 +20,12 @@
         app:titleMarginStart="30dp"
         app:titleTextAppearance="@style/appTitle">
 
-        <Button
+        <ImageView
             android:id="@+id/userPic"
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/user_pic" />
+            android:layout_marginEnd="10dp" />
 
     </androidx.appcompat.widget.Toolbar>
 

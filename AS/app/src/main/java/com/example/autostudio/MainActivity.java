@@ -1,28 +1,50 @@
 package com.example.autostudio;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BlendMode;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
-    private User user;
+    private ImageView userPic;
 
     private Button newTrip;
     private Button refill;
@@ -48,7 +70,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("User");
+        final User user = (User) intent.getSerializableExtra("User");
+        userPic = (ImageView) findViewById(R.id.userPic);
+
+        if (user != null) {
+            Glide.with(getApplicationContext()).load(user.getUserPhoto())
+                    .centerCrop().circleCrop().into(userPic);
+            Log.d("User", user.toString());
+        }
+
 
         carArrayList.add(testCar);
         carArrayList.add(testCar2);
@@ -81,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent docsIntent = new Intent(getApplicationContext(), DocsActivity.class);
+
                 startActivity(docsIntent);
                 Date current = new Date();
                 Log.e("ITP", "\n" + testCar.getExpDateITP().toString() + "\n" + current.toString());

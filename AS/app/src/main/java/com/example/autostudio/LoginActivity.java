@@ -8,7 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private final int RC_SIGN_IN = 0;
     private SignInButton signInButton;
     private GoogleSignInClient gsc;
-    private User user;
 
 
     @Override
@@ -61,11 +63,11 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            if (account != null) {
-                user = new User(account.getId(), account.getDisplayName(),
-                        account.getEmail(), account.getPhotoUrl().toString());
-            }
-
+//            Glide.with(getApplicationContext()).load(account.getPhotoUrl())
+//                    .thumbnail(0.5f)
+//                    .crossFade()
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into();
             updateUI(account);
         } catch (ApiException e) {
             Log.w("Google SignIn", "signInResult:failed code=" + e.getStatusCode());
@@ -85,6 +87,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(GoogleSignInAccount account) {
         if (account != null) {
+            User user = new User(account.getId(), account.getDisplayName(),
+                    account.getEmail(), account.getPhotoUrl().toString());
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("User", user);
             startActivity(intent);
