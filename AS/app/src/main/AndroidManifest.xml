@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/logo_auto_studio_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddCarActivity1"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".AddCarActivity1" />
         <activity android:name=".CarActivity" />
         <activity android:name=".DocsActivity" />
         <activity android:name=".RefillActivity" />
