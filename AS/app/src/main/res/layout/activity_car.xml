@@ -45,9 +45,10 @@
 
             <ImageView
                 android:id="@+id/imgColor"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="center"
+                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textDetails"
                 app:layout_constraintHorizontal_bias="0.977"
