@@ -62,6 +62,7 @@
         android:textAppearance="@style/carListText"
         android:translationY="-0.2sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:focusable="false"
         app:layout_constraintEnd_toStartOf="@+id/btn_ITP" />
 
     <Button
@@ -71,9 +72,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="32dp"
-
+        android:focusable="false"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_red"
         android:gravity="center"
         android:lineSpacingExtra="0sp"
         android:text="@string/itp"

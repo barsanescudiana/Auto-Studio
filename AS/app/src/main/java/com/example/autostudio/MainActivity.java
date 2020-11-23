@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
-        userPic = (ImageView) findViewById(R.id.userPic);
+        userPic = findViewById(R.id.userPic);
 
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         carArrayList.add(testCar2);
         carArrayList.add(testCar3);
 
-        newTrip = (Button) findViewById(R.id.newTrip);
-        refill = (Button) findViewById(R.id.refill);
-        docs = (Button) findViewById(R.id.docs);
-        addCar = (Button) findViewById(R.id.btn_add);
+        newTrip = findViewById(R.id.newTrip);
+        refill = findViewById(R.id.refill);
+        docs = findViewById(R.id.docs);
+        addCar = findViewById(R.id.btn_add);
 
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        carList = (ListView) findViewById(R.id.carList);
+        carList = findViewById(R.id.carList);
 
         carList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 Car selectedCar = carArrayList.get(position);
                 Intent carIntent = new Intent(getApplicationContext(), CarActivity.class);
                 carIntent.putExtra("selectedCar", selectedCar);
+                Log.w("ALo", "ALO");
                 startActivity(carIntent);
             }
         });
