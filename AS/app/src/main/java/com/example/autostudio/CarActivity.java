@@ -2,6 +2,7 @@ package com.example.autostudio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,17 +18,18 @@ public class CarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
 
-        textName = findViewById(R.id.textCarName);
-        textDetails = findViewById(R.id.textDetails);
-        totalKM = findViewById(R.id.totalKMtext);
-        range = findViewById(R.id.range);
-        toITP = findViewById(R.id.toITP);
-        avg = findViewById(R.id.avg);
-//        color = (ImageView) findViewById(R.id.imgColor);
+        textName = (TextView) findViewById(R.id.textCarName);
+        textDetails = (TextView) findViewById(R.id.textDetails);
+        totalKM = (TextView) findViewById(R.id.totalKMtext);
+        range = (TextView) findViewById(R.id.range);
+        toITP = (TextView) findViewById(R.id.toITP);
+        avg = (TextView) findViewById(R.id.avg);
+        color = (ImageView) findViewById(R.id.imgColor);
 
-        testCar = (Car) savedInstanceState.get("selectedCar");
-        String carName = testCar.getBrand() + " " + testCar.getModel();
-        String motor = testCar.getEngineCapacity() / 1000 + "." + testCar.getEngineCapacity() / 100 % 10;
+        Bundle bundle = getIntent().getExtras();
+        testCar = (Car) bundle.getSerializable("SELECTED");
+        String carName = testCar.getBrand() + " " +testCar.getModel();
+        String motor = String.valueOf(testCar.getEngineCapacity()/1000) + "." + String.valueOf(testCar.getEngineCapacity()/100%10);
         String details = motor + " " + testCar.getEngineOutput() + "hp " + testCar.getFuel();
         textName.setText(carName);
         textDetails.setText(details);
@@ -35,6 +37,33 @@ public class CarActivity extends AppCompatActivity {
         avg.setText(String.valueOf(testCar.getAvgConsumption()));
         toITP.setText("200 d");
 
-        range.setText(String.valueOf(testCar.getKm() / testCar.getAvgConsumption()));
+        range.setText(String.valueOf(testCar.getKm()/testCar.getAvgConsumption()));
+
+        switch (testCar.getColor()) {
+            case "Blue":
+                color.setImageDrawable(getDrawable(R.drawable.blue_card));
+                break;
+            case "Gray":
+                color.setImageDrawable(getDrawable(R.drawable.grey_card));
+                break;
+            case "Green":
+                color.setImageDrawable(getDrawable(R.drawable.green_card));
+                break;
+            case "Black":
+                color.setImageDrawable(getDrawable(R.drawable.black_card));
+                break;
+            case "Red":
+                color.setImageDrawable(getDrawable(R.drawable.red_card));
+                break;
+            case "Yellow":
+                color.setImageDrawable(getDrawable(R.drawable.yellow_card));
+                break;
+            case "Purple":
+                color.setImageDrawable(getDrawable(R.drawable.purple_card));
+                break;
+            case "White":
+                color.setImageDrawable(getDrawable(R.drawable.white_card));
+                break;
+        }
     }
 }
