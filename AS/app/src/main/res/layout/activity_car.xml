@@ -45,15 +45,15 @@
 
             <ImageView
                 android:id="@+id/imgColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:src="@drawable/btn_red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textDetails"
                 app:layout_constraintHorizontal_bias="0.977"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -173,11 +173,11 @@
 
     <Button
         android:id="@+id/newEvent"
-        android:layout_width="246dp"
-        android:layout_height="84dp"
+        android:layout_width="166dp"
+        android:layout_height="70dp"
+        android:background="@drawable/new_event_button"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/new_event_button" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -192,8 +192,7 @@
         <ListView
             android:id="@+id/eventListView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:backgroundTint="@drawable/events_bg" />
+            android:layout_height="200dp" />
     </LinearLayout>
 
 

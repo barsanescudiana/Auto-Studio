@@ -135,7 +135,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Car selectedCar = carArrayList.get(position);
                 Intent carIntent = new Intent(getApplicationContext(), CarActivity.class);
-                carIntent.putExtra("selectedCar", selectedCar);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("SELECTED", selectedCar);
+                carIntent.putExtras(bundle);
                 startActivity(carIntent);
             }
         });
