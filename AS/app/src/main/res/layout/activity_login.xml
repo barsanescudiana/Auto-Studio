@@ -29,6 +29,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp" />
 
+        <ImageView
+            android:id="@+id/userPic"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/welcomeLastSignedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/salvatore_bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
