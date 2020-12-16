@@ -1,6 +1,7 @@
 package com.example.autostudio;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,7 +34,15 @@ public class CarActivity extends AppCompatActivity {
         String details = motor + " " + testCar.getEngineOutput() + "hp " + testCar.getFuel();
         textName.setText(carName);
         textDetails.setText(details);
-        totalKM.setText(String.valueOf(testCar.getKm()));
+        String kkm = String.valueOf(testCar.getKm()/1000) + "K";
+        String mkm = String.valueOf(testCar.getKm()/1000000) + "M";
+        String km = String.valueOf(testCar.getKm()/1000) +"."+String.valueOf(Math.round(testCar.getKm()/100)%10);
+        if(testCar.getKm() >= 100000 && testCar.getKm() <= 999999){
+            totalKM.setText(kkm);
+        } else if (testCar.getKm() > 100000000) {
+            totalKM.setText(mkm);
+        } else
+            totalKM.setText(km);
         avg.setText(String.valueOf(testCar.getAvgConsumption()));
         toITP.setText("200 d");
 

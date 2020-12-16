@@ -8,11 +8,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo_auto_studio"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/logo_auto_studio_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
-        <activity android:name=".DocsActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".AddCarActivity2"></activity>
+        <activity android:name=".DocsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

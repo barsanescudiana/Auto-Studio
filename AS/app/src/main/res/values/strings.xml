@@ -40,4 +40,18 @@
     <string name="color">Color</string>
     <string name="next">Next</string>
     <string name="my_docs">MY DOCS</string>
+    <string name="engine_capacity">Engine capacity</string>
+    <string name="cm">cm</string>
+    <string name="_1400">1400</string>
+    <string name="_95">95</string>
+    <string name="avg_consumption">Avg consumption</string>
+    <string name="l_100km">L / 100KM</string>
+    <string name="rca_expiration_date">RCA expiration date</string>
+    <string name="_01_01_2020">01/01/2020</string>
+    <string name="itp_expiration_date">ITP expiration date</string>
+    <string name="_10_7">10.7</string>
+    <string-array name="measurements">
+        <item> hp </item>
+        <item> kW </item>
+    </string-array>
 </resources>

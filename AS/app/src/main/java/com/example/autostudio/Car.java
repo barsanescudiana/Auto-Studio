@@ -116,4 +116,21 @@ public class Car implements Serializable {
     public void setExpDateITP(Date expDateITP) {
         this.expDateITP = expDateITP;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", fuel='" + fuel + '\'' +
+                ", km=" + km +
+                ", color='" + color + '\'' +
+                ", engineCapacity=" + engineCapacity +
+                ", engineOutput=" + engineOutput +
+                ", avgConsumption=" + avgConsumption +
+                ", expDateRCA=" + expDateRCA +
+                ", expDateITP=" + expDateITP +
+                ", tankCapacity=" + tankCapacity +
+                '}';
+    }
 }

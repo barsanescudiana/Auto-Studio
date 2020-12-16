@@ -33,9 +33,15 @@ import androidx.core.content.res.ResourcesCompat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public Date itp = new Date(2021, 10, 27);
     public Date rca = new Date(2021, 8, 27);
 
-    public Car testCar = new Car("Renault", "Clio", "Petrol", 100678, "Blue",
+    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
             1400, 95, 10.7, itp, rca);
     public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
             1400, 95, 10.7, itp, rca);
@@ -80,11 +86,12 @@ public class MainActivity extends AppCompatActivity {
                     .centerCrop().circleCrop().into(userPic);
             Log.d("User", user.toString());
         }
-
-
         carArrayList.add(testCar);
         carArrayList.add(testCar2);
         carArrayList.add(testCar3);
+
+//        carArrayList = new ArrayList<>();
+//        new JSONTasks().execute();
 
         newTrip = (Button) findViewById(R.id.newTrip);
         refill = (Button) findViewById(R.id.refill);
@@ -141,9 +148,78 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(carIntent);
             }
         });
-
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
+    }
 
+    public class JSONTasks extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            //carArrayList.clear();
+            String result = null;
+            try {
+                URL url = new URL("https://jsonkeeper.com/b/PHBW");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.connect();
+
+                if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String temp;
+
+                    while((temp = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(temp);
+                    }
+
+                    result = stringBuilder.toString();
+                } else {
+                    result = "error";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.equals(s);
+
+            JSONObject object = null;
+            try {
+                object = new JSONObject(s);
+                JSONArray array = object.getJSONArray("data");
+
+                for(int i = 0; i<array.length(); i++) {
+                    JSONObject jsonObject = array.getJSONObject(i);
+                    String brand = jsonObject.getString("brand");
+                    String model = jsonObject.getString("model");
+                    String fuel = jsonObject.getString("gas");
+                    String tank = jsonObject.getString("tank");
+                    String color = jsonObject.getString("color");
+                    double km = jsonObject.getDouble("km");
+                    double avg = jsonObject.getDouble("avg");
+                    int engineCapacity = jsonObject.getInt("capacity");
+                    int engineOutput = jsonObject.getInt("output");
+                    String rca = jsonObject.getString("rca");
+                    String itp = jsonObject.getString("itp");
+
+                    Car car = new Car(brand, model, fuel, km, color, engineCapacity,
+                            engineOutput, avg, new Date(rca), new Date(itp));
+
+                    carArrayList.add(car);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
+            carList.setAdapter(adapter);
+        }
     }
 }
