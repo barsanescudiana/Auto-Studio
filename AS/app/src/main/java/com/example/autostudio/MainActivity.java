@@ -53,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView userPic;
 
-    private Button newTrip;
-    private Button refill;
-    private Button docs;
-    private Button addCar;
-
     private ListView carList;
 
     public Date itp = new Date(2021, 10, 27);
@@ -93,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
 //        carArrayList = new ArrayList<>();
 //        new JSONTasks().execute();
 
-        newTrip = (Button) findViewById(R.id.newTrip);
-        refill = (Button) findViewById(R.id.refill);
-        docs = (Button) findViewById(R.id.docs);
-        addCar = (Button) findViewById(R.id.btn_add);
+        Button newTrip = (Button) findViewById(R.id.newTrip);
+        Button refill = (Button) findViewById(R.id.refill);
+        Button docs = (Button) findViewById(R.id.docs);
+        Button addCar = (Button) findViewById(R.id.btn_add);
 
 
         newTrip.setOnClickListener(new View.OnClickListener() {
