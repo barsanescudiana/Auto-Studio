@@ -85,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
         carArrayList.add(testCar2);
         carArrayList.add(testCar3);
 
-//        carArrayList = new ArrayList<>();
-//        new JSONTasks().execute();
-
         Button newTrip = (Button) findViewById(R.id.newTrip);
         Button refill = (Button) findViewById(R.id.refill);
         Button docs = (Button) findViewById(R.id.docs);
@@ -146,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
         });
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
+
+//        carArrayList = new ArrayList<>();
+//        new JSONTasks().execute();
     }
 
     public class JSONTasks extends AsyncTask<String, String, String> {
