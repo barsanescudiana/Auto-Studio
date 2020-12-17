@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         docs = (Button) findViewById(R.id.docs);
         addCar = (Button) findViewById(R.id.btn_add);
 
+
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
