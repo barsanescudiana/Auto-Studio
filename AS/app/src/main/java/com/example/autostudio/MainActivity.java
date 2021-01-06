@@ -38,16 +38,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     .centerCrop().circleCrop().into(userPic);
             Log.d("User", user.toString());
         }
-        carArrayList.add(testCar);
-        carArrayList.add(testCar2);
-        carArrayList.add(testCar3);
+//        carArrayList.add(testCar);
+//        carArrayList.add(testCar2);
+//        carArrayList.add(testCar3);
 
         Button newTrip = (Button) findViewById(R.id.newTrip);
         Button refill = (Button) findViewById(R.id.refill);
@@ -144,33 +141,43 @@ public class MainActivity extends AppCompatActivity {
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
 
-//        carArrayList = new ArrayList<>();
-//        new JSONTasks().execute();
+        new JSONTasks().execute();
     }
 
     public class JSONTasks extends AsyncTask<String, String, String> {
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.e("PRE", "On pre execute!!!!1");
+        }
 
-            //carArrayList.clear();
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.e("BG", "do in backgroound!!!");
+
             String result = null;
             try {
                 URL url = new URL("https://jsonkeeper.com/b/PHBW");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
                 conn.connect();
 
-                if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    StringBuilder stringBuilder = new StringBuilder();
+                    StringBuffer stringBuffer = new StringBuffer();
                     String temp;
 
-                    while((temp = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(temp);
+                    while ((temp = bufferedReader.readLine()) != null) {
+                        stringBuffer.append(temp);
                     }
 
-                    result = stringBuilder.toString();
+                    if(stringBuffer.length() == 0) {
+                        return null;
+                    }
+
+                    result = stringBuffer.toString();
                 } else {
                     result = "error";
                 }
@@ -210,11 +217,13 @@ public class MainActivity extends AppCompatActivity {
                     carArrayList.add(car);
                 }
 
+                Log.e("SUCCES", "Succes getting data!");
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
+            CarAdapter adapter = new CarAdapter(MainActivity.this, R.layout.car_list_item, carArrayList, getLayoutInflater());
             carList.setAdapter(adapter);
         }
     }

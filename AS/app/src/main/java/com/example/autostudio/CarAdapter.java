@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CarAdapter extends ArrayAdapter<Car> {
+public class CarAdapter extends BaseAdapter {
 
     private final Context context;
     private final int resource;
@@ -29,7 +30,6 @@ public class CarAdapter extends ArrayAdapter<Car> {
 
 
     public CarAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Car> carList, LayoutInflater layoutInflater) {
-        super(context, resource, carList);
         this.context = context;
         this.resource = resource;
         this.carList = carList;
@@ -108,5 +108,21 @@ public class CarAdapter extends ArrayAdapter<Car> {
         }
 
         return view;
+    }
+
+    @Nullable
+    @Override
+    public Car getItem(int position) {
+        return carList.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return carList.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }
