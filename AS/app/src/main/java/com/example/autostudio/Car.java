@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity(tableName = "cars")
 public class Car implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int carId;
     private int userId;
     private String brand;
     private String model;
@@ -30,6 +30,7 @@ public class Car implements Serializable {
 
     }
 
+    @Ignore
     public Car(String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
                double avgConsumption, Date expDateRCA, Date expDateITP) {
         this.brand = brand;
@@ -44,12 +45,27 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public int getId() {
-        return id;
+    public Car(int carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
+               double avgConsumption, Date expDateRCA, Date expDateITP) {
+        this.carId = carId;
+        this.brand = brand;
+        this.model = model;
+        this.fuel = fuel;
+        this.km = km;
+        this.color = color;
+        this.engineCapacity = engineCapacity;
+        this.engineOutput = engineOutput;
+        this.avgConsumption = avgConsumption;
+        this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
+        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     public int getUserId() {
