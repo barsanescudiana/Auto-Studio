@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/event_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/event_name"
             android:paddingStart="20dp"
@@ -25,12 +25,12 @@
 
         <TextView
             android:id="@+id/days_ago"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/salvatore_light"
-            android:paddingEnd="20dp"
+            android:paddingEnd="10dp"
             android:text="@string/x_days_ago"
-            android:textAlignment="center"
+            android:textAlignment="viewEnd"
             android:textColor="@color/grey"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/event_date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_date"
         android:textColor="@color/white"

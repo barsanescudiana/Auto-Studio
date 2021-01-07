@@ -1,18 +1,48 @@
 package com.example.autostudio;
 
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName = "events",
+        foreignKeys = @ForeignKey(entity = Car.class, parentColumns = "eventId", childColumns = "carId"),
+        indices = @Index("carId")
+)
 public class Event {
+    @PrimaryKey(autoGenerate = true)
+    private int eventId;
     private String name;
     private Date date;
-    private int carID;
+    private int carId;
 
-    public Event() { }
+    @Ignore
+    public Event() {
+    }
 
-    public Event(String name, Date date, int carID) {
+    @Ignore
+    public Event(String name, Date date, int carId) {
         this.name = name;
         this.date = date;
-        this.carID = carID;
+        this.carId = carId;
+    }
+
+    public Event(int eventId, String name, Date date, int carId) {
+        this.eventId = eventId;
+        this.name = name;
+        this.date = date;
+        this.carId = carId;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getName() {
@@ -31,11 +61,20 @@ public class Event {
         this.date = date;
     }
 
-    public int getCarID() {
-        return carID;
+    public int getCarId() {
+        return carId;
     }
 
-    public void setCarID(int carID) {
-        this.carID = carID;
+    public void setCarId(int carId) {
+        this.carId = carId;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", carID=" + carId +
+                '}';
     }
 }

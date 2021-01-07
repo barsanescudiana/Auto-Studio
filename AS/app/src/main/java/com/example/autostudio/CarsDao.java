@@ -14,12 +14,12 @@ public interface CarsDao {
     @Query("Select * from cars")
     List<Car> getAll();
 
-    @Query("Select * from cars where id=:carId")
+    @Query("Select * from cars where carId=:carId")
     Car getCarById(long carId);
 
     @Query("Delete from cars")
     void deleteAll();
 
-    @Query("Delete from cars where id = :carId")
-    void deleteWhere(long carId);
+    @Query("Delete from cars where carId = :carId")
+    void deleteEventById(long carId);
 }
