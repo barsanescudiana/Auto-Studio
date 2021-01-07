@@ -52,23 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView carList;
 
-    public Date itp = new Date(2021, 10, 27);
-    public Date rca = new Date(2021, 8, 27);
-
-    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
-            1400, 95, 10.7, itp, rca);
-    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
-            1400, 95, 10.7, itp, rca);
-    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
-            1400, 95, 10.7, itp, rca);
-
-    public ArrayList<Car> carArrayList = new ArrayList<>();
+    public ArrayList<Car> carArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        carArrayList = new ArrayList<>();
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
         userPic = (ImageView) findViewById(R.id.userPic);
@@ -87,7 +78,22 @@ public class MainActivity extends AppCompatActivity {
         Button docs = (Button) findViewById(R.id.docs);
         Button addCar = (Button) findViewById(R.id.btn_add);
 
-
+        Button settings = (Button) findViewById(R.id.btn_settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+        Button dashboard = (Button) findViewById(R.id.btn_main);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(dashboardIntent);
+            }
+        });
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -142,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
         carList.setAdapter(adapter);
 
         new JSONTasks().execute();
+
+
     }
 
     public class JSONTasks extends AsyncTask<String, String, String> {
@@ -201,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = array.getJSONObject(i);
                     String brand = jsonObject.getString("brand");
                     String model = jsonObject.getString("model");
-                    String fuel = jsonObject.getString("gas");
+                    String fuel = jsonObject.getString("fuel");
                     String tank = jsonObject.getString("tank");
                     String color = jsonObject.getString("color");
                     double km = jsonObject.getDouble("km");
