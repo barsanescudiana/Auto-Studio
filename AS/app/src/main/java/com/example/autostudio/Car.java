@@ -1,10 +1,18 @@
 package com.example.autostudio;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Entity(tableName = "cars")
 public class Car implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private int userId;
     private String brand;
     private String model;
     private String fuel;
@@ -15,10 +23,9 @@ public class Car implements Serializable {
     private double avgConsumption;
     private Date expDateRCA;
     private Date expDateITP;
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-
     private double tankCapacity;
 
+    @Ignore
     public Car() {
 
     }
@@ -35,6 +42,22 @@ public class Car implements Serializable {
         this.avgConsumption = avgConsumption;
         this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getBrand() {
@@ -115,6 +138,14 @@ public class Car implements Serializable {
 
     public void setExpDateITP(Date expDateITP) {
         this.expDateITP = expDateITP;
+    }
+
+    public double getTankCapacity() {
+        return tankCapacity;
+    }
+
+    public void setTankCapacity(double tankCapacity) {
+        this.tankCapacity = tankCapacity;
     }
 
     @Override

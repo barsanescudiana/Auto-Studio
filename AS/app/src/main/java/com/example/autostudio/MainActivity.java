@@ -45,6 +45,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,19 +56,22 @@ public class MainActivity extends AppCompatActivity {
     public Date itp = new Date(2021, 10, 27);
     public Date rca = new Date(2021, 8, 27);
 
-    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
-            1400, 95, 10.7, itp, rca);
-    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
-            1400, 95, 10.7, itp, rca);
-    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
-            1400, 95, 10.7, itp, rca);
+//    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
+//            1400, 95, 10.7, itp, rca);
+//    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
+//            1400, 95, 10.7, itp, rca);
+//    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
+//            1400, 95, 10.7, itp, rca);
 
     public ArrayList<Car> carArrayList = new ArrayList<>();
+    public CarsDB carsDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        carsDB = CarsDB.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
@@ -141,90 +145,110 @@ public class MainActivity extends AppCompatActivity {
         CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
 
-        new JSONTasks().execute();
+        //new JSONTasks().execute();
+        new GetCarsAsyncTask().execute();
     }
 
-    public class JSONTasks extends AsyncTask<String, String, String> {
+//    public class JSONTasks extends AsyncTask<String, String, String> {
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            Log.e("PRE", "On pre execute!!!!1");
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... strings) {
+//            Log.e("BG", "do in backgroound!!!");
+//
+//            String result = null;
+//            try {
+//                URL url = new URL("https://jsonkeeper.com/b/PHBW");
+//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                conn.setRequestMethod("GET");
+//                conn.connect();
+//
+//                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+//                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
+//                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                    StringBuffer stringBuffer = new StringBuffer();
+//                    String temp;
+//
+//                    while ((temp = bufferedReader.readLine()) != null) {
+//                        stringBuffer.append(temp);
+//                    }
+//
+//                    if(stringBuffer.length() == 0) {
+//                        return null;
+//                    }
+//
+//                    result = stringBuffer.toString();
+//                } else {
+//                    result = "error";
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            return result;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.equals(s);
+//
+//            JSONObject object = null;
+//            try {
+//                object = new JSONObject(s);
+//                JSONArray array = object.getJSONArray("data");
+//
+//                for(int i = 0; i<array.length(); i++) {
+//                    JSONObject jsonObject = array.getJSONObject(i);
+//                    String brand = jsonObject.getString("brand");
+//                    String model = jsonObject.getString("model");
+//                    String fuel = jsonObject.getString("fuel");
+//                    String tank = jsonObject.getString("tank");
+//                    String color = jsonObject.getString("color");
+//                    double km = jsonObject.getDouble("km");
+//                    double avg = jsonObject.getDouble("avg");
+//                    int engineCapacity = jsonObject.getInt("capacity");
+//                    int engineOutput = jsonObject.getInt("output");
+//                    String rca = jsonObject.getString("rca");
+//                    String itp = jsonObject.getString("itp");
+//
+//                    Car car = new Car(brand, model, fuel, km, color, engineCapacity,
+//                            engineOutput, avg, new Date(rca), new Date(itp));
+//
+//                    carArrayList.add(car);
+//                }
+//
+//                Log.e("SUCCES", "Succes getting data!");
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//            CarAdapter adapter = new CarAdapter(MainActivity.this, R.layout.car_list_item, carArrayList, getLayoutInflater());
+//            carList.setAdapter(adapter);
+//        }
+//   }
+
+    private class GetCarsAsyncTask extends AsyncTask<Void, Void, List<Car>> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Log.e("PRE", "On pre execute!!!!1");
+        protected List<Car> doInBackground(Void... voids) {
+            return carsDB.getCarsDao().getAll();
         }
 
         @Override
-        protected String doInBackground(String... strings) {
-            Log.e("BG", "do in backgroound!!!");
+        protected void onPostExecute(List<Car> cars) {
+            super.onPostExecute(cars);
 
-            String result = null;
-            try {
-                URL url = new URL("https://jsonkeeper.com/b/PHBW");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                conn.connect();
-
-                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    StringBuffer stringBuffer = new StringBuffer();
-                    String temp;
-
-                    while ((temp = bufferedReader.readLine()) != null) {
-                        stringBuffer.append(temp);
-                    }
-
-                    if(stringBuffer.length() == 0) {
-                        return null;
-                    }
-
-                    result = stringBuffer.toString();
-                } else {
-                    result = "error";
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.equals(s);
-
-            JSONObject object = null;
-            try {
-                object = new JSONObject(s);
-                JSONArray array = object.getJSONArray("data");
-
-                for(int i = 0; i<array.length(); i++) {
-                    JSONObject jsonObject = array.getJSONObject(i);
-                    String brand = jsonObject.getString("brand");
-                    String model = jsonObject.getString("model");
-                    String fuel = jsonObject.getString("gas");
-                    String tank = jsonObject.getString("tank");
-                    String color = jsonObject.getString("color");
-                    double km = jsonObject.getDouble("km");
-                    double avg = jsonObject.getDouble("avg");
-                    int engineCapacity = jsonObject.getInt("capacity");
-                    int engineOutput = jsonObject.getInt("output");
-                    String rca = jsonObject.getString("rca");
-                    String itp = jsonObject.getString("itp");
-
-                    Car car = new Car(brand, model, fuel, km, color, engineCapacity,
-                            engineOutput, avg, new Date(rca), new Date(itp));
-
-                    carArrayList.add(car);
-                }
-
-                Log.e("SUCCES", "Succes getting data!");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            carArrayList = (ArrayList<Car>) cars;
 
             CarAdapter adapter = new CarAdapter(MainActivity.this, R.layout.car_list_item, carArrayList, getLayoutInflater());
             carList.setAdapter(adapter);
         }
     }
+
 }
