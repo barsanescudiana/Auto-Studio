@@ -28,7 +28,6 @@ public class CarAdapter extends BaseAdapter {
 
     public final Date current = new Date();
 
-
     public CarAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Car> carList, LayoutInflater layoutInflater) {
         this.context = context;
         this.resource = resource;

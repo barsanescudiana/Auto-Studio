@@ -3,21 +3,46 @@ package com.example.autostudio;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class CarActivity extends AppCompatActivity {
 
     Car testCar;
     TextView textName, textDetails, totalKM, range, toITP, avg;
     ImageView color;
+    Button event;
+    ListView eventsListView;
+    ArrayList<Event> eventsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
+
+        eventsList = new ArrayList<>();
+        eventsListView = findViewById(R.id.eventListView);
+
+        Date testDate = new Date("10/04/2019");
+        Event event1 = new Event("Changed break pads", testDate, 1);
+        Event event2 = new Event("Revision", testDate, 1);
+        Event event3 = new Event("Changed seasonal tires", testDate, 1);
+
+        eventsList.add(event1);
+        eventsList.add(event2);
+        eventsList.add(event3);
+
+        EventAdapter eventsAdapter = new EventAdapter(CarActivity.this, R.layout.event_list_item, eventsList, getLayoutInflater());
+        eventsListView.setAdapter(eventsAdapter);
 
         textName = (TextView) findViewById(R.id.textCarName);
         textDetails = (TextView) findViewById(R.id.textDetails);
@@ -26,6 +51,15 @@ public class CarActivity extends AppCompatActivity {
         toITP = (TextView) findViewById(R.id.toITP);
         avg = (TextView) findViewById(R.id.avg);
         color = (ImageView) findViewById(R.id.imgColor);
+
+        event = (Button) findViewById(R.id.newEvent);
+        event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
+                startActivity(eventIntent);
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
         testCar = (Car) bundle.getSerializable("SELECTED");
