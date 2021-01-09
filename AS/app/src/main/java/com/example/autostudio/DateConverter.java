@@ -5,6 +5,7 @@ import androidx.room.TypeConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class DateConverter {
     @TypeConverter
@@ -24,5 +25,15 @@ public class DateConverter {
             e.printStackTrace();
         }
         return newDate;
+    }
+
+    @TypeConverter
+    public static UUID uuidFromString(String uuid) {
+        return UUID.fromString(uuid);
+    }
+
+    @TypeConverter
+    public static String stringFromUuid(UUID uuid) {
+        return uuid.toString();
     }
 }

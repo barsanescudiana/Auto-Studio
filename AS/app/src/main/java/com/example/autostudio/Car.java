@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    //    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private UUID carId = UUID.randomUUID();
     private int userId;
     private String brand;
