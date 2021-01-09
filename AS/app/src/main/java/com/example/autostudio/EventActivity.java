@@ -29,12 +29,14 @@ public class EventActivity extends AppCompatActivity {
     String eventName;
     Event event;
 
-    SharedPreferences prefs;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getStringExtra("CAR_ID");
@@ -84,7 +86,10 @@ public class EventActivity extends AppCompatActivity {
                     eventName = eventSpinner.getSelectedItem().toString();
                 } else {
                     findViewById(R.id.action_layout).setVisibility(View.VISIBLE);
-                    findViewById(R.id.mechanic_layout).setVisibility(View.VISIBLE);
+                    EditText mechanic = findViewById(R.id.mechanic_layout);
+                    mechanic.setVisibility(View.VISIBLE);
+                    String myMechanic = preferences.getString("MECHANIC", "");
+                    mechanic.setText(myMechanic);
                 }
             }
 
