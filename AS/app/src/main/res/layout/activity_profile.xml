@@ -66,6 +66,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="vertical"
+            android:paddingBottom="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_layout"
@@ -93,6 +94,18 @@
                 android:textSize="20sp" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_button_fill"
+            android:text="@string/logout"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:fontFamily="@font/salvatore_regular"
+            android:paddingBottom="15dp"
+            />
     </LinearLayout>
     <include
         android:id="@+id/top_bottom_nav"

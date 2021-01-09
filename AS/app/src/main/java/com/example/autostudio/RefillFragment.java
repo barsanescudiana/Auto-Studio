@@ -1,5 +1,7 @@
 package com.example.autostudio;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -20,6 +23,7 @@ public class RefillFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    SharedPreferences preferences;
 
     private TextView close;
 
@@ -56,15 +60,13 @@ public class RefillFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        preferences = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-
         View view = inflater.inflate(R.layout.fragment_refill, container, false);
 
         close = view.findViewById(R.id.close);
@@ -72,10 +74,15 @@ public class RefillFragment extends Fragment {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                assert getFragmentManager() != null;
                 getFragmentManager().beginTransaction().remove(RefillFragment.this).commit();
             }
         });
 
+        String gasStation = preferences.getString("GAS_STATION", "");
+        EditText gas = view.findViewById(R.id.gas_station_refill);
+        gas.setText(gasStation);
+        
         return view;
     }
 }

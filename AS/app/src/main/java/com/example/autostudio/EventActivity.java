@@ -29,12 +29,14 @@ public class EventActivity extends AppCompatActivity {
     String eventName;
     Event event;
 
-    SharedPreferences prefs;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getIntExtra("CAR_ID", -1);
@@ -70,6 +72,13 @@ public class EventActivity extends AppCompatActivity {
                 actions);
         actionAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         actionSpinner.setAdapter(actionAdapter);
+
+
+        EditText mechanic = findViewById(R.id.mechanic_edit);
+        if(mechanic.getVisibility() == View.VISIBLE) {
+            String myMechanic = preferences.getString("MECHANIC", "");
+            mechanic.setText(myMechanic);
+        }
 
         eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -132,6 +141,7 @@ public class EventActivity extends AppCompatActivity {
 
                     Log.e("EVENT", event.toString());
                     databaseAutoStudio.getEventsDao().insert(event);
+                    Log.e("EVENT DUPA INSERT", event.toString());
                 }
             }
         });

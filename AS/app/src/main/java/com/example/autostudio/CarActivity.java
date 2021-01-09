@@ -14,7 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class CarActivity extends AppCompatActivity {
 
@@ -65,7 +67,7 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
-                Log.e("ID MASINA", "String.valueOf(testCar.getCarId())");
+                Log.e("ID MASINA", String.valueOf(testCar.getCarId()));
 
                 eventIntent.putExtra("CAR_ID", testCar.getCarId());
                 startActivity(eventIntent);
@@ -87,6 +89,10 @@ public class CarActivity extends AppCompatActivity {
         } else
             totalKM.setText(km);
         avg.setText(String.valueOf(testCar.getAvgConsumption()));
+
+//        long msDiff = Calendar.getInstance().getTimeInMillis() - testDate.getTimeInMillis();
+//        long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+
         toITP.setText("200 d");
 
         range.setText(String.valueOf(testCar.getKm() / testCar.getAvgConsumption()));
