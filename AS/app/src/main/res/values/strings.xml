@@ -68,4 +68,21 @@
         <item> hp </item>
         <item> kW </item>
     </string-array>
+
+    <string-array name="events">
+        <item>Accident</item>
+        <item>ITP</item>
+        <item>RCA</item>
+        <item>Service visit</item>
+    </string-array>
+
+    <string-array name="actions">
+        <item>Body</item>
+        <item>Chassis</item>
+        <item>Drive transmission and steering</item>
+        <item>Electrical</item>
+        <item>Engine</item>
+        <item>Suspension and break</item>
+    </string-array>
+
 </resources>
