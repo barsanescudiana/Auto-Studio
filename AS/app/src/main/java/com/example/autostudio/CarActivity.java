@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -64,6 +65,8 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
+                Log.e("ID MASINA", "String.valueOf(testCar.getCarId())");
+
                 eventIntent.putExtra("CAR_ID", testCar.getCarId());
                 startActivity(eventIntent);
             }

@@ -161,6 +161,7 @@
                 android:background="@drawable/edit_text_bg"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mechanic_label" />
@@ -226,7 +227,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <Spinner
-                        android:id="@+id/spinner_output_measure"
+                        android:id="@+id/value_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
