@@ -80,9 +80,9 @@ public class Event {
 
     public String getInfo() {
         if ("Service Visit".equals(category)) {
-            info += "\n" + category + ": " + name + "\nDate: " + date;
+            info += "\n" + category + ": " + name + "\nDate: " + date + "\nCost: " + cost;
         } else {
-            info += "\n" + category + " - Date: " + date;
+            info += "\n" + category + " - Date: " + date + "\nCost: " + cost;
         }
 
         return info;

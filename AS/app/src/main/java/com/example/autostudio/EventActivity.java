@@ -3,6 +3,7 @@ package com.example.autostudio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,8 @@ public class EventActivity extends AppCompatActivity {
     String eventName;
     Event event;
 
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,8 @@ public class EventActivity extends AppCompatActivity {
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getIntExtra("CAR_ID", 0);
+
+        Log.e("ID MASINA", String.valueOf(carId));
 
         events = new ArrayList<>();
 
@@ -58,7 +63,7 @@ public class EventActivity extends AppCompatActivity {
         eventAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         eventSpinner.setAdapter(eventAdapter);
 
-        Spinner actionSpinner = (Spinner) findViewById(R.id.action_spinner);
+        final Spinner actionSpinner = (Spinner) findViewById(R.id.action_spinner);
         ArrayAdapter<String> actionAdapter = new ArrayAdapter<>(this,
                 R.layout.event_spinner_item,
                 actions);
@@ -94,7 +99,36 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(carId != 0) {
                     TextView date = findViewById(R.id.date_input);
-//                    event = new Event(eventName, new Date(date.getText().toString()), carId);
+                    EditText costText = findViewById(R.id.value_edit);
+                    Double cost;
+                    Spinner costCurrency = findViewById(R.id.value_spinner);
+                    if(costCurrency.getSelectedItem().equals("EUR")) {
+                        cost = 4.8 * Double.parseDouble(costText.getText().toString());
+                    } else {
+                        cost = Double.parseDouble(costText.getText().toString());
+                    }
+                    switch (eventSpinner.getSelectedItem().toString()) {
+                        case "ITP":
+                        case "RCA":
+                        case "Accident":
+                            event = new Event(eventSpinner.getSelectedItem().toString(),
+                                    eventName,
+                                    new Date(date.getText().toString()),
+                                    "",
+                                    cost,
+                                    carId);
+                            break;
+                        case "Service visit":
+                            EditText mechanic = findViewById(R.id.mechanic_edit);
+                            event = new Event(eventSpinner.getSelectedItem().toString(),
+                                    actionSpinner.getSelectedItem().toString(),
+                                    new Date(date.getText().toString()),
+                                    "Mechanic: " + mechanic.getText().toString(),
+                                    cost,
+                                    carId);
+                            break;
+                    }
+
                     Log.e("EVENT", event.toString());
                     databaseAutoStudio.getEventsDao().insert(event);
                 }
