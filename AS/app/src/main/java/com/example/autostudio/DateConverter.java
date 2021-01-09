@@ -26,14 +26,4 @@ public class DateConverter {
         }
         return newDate;
     }
-
-    @TypeConverter
-    public static UUID uuidFromString(String uuid) {
-        return UUID.fromString(uuid);
-    }
-
-    @TypeConverter
-    public static String stringFromUuid(UUID uuid) {
-        return uuid.toString();
-    }
 }

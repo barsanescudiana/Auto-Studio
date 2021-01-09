@@ -12,7 +12,7 @@ public interface EventsDao {
     void insert(Event event);
 
     @Query("Select * from events where carId=:carId")
-    List<Event> getAll(String carId);
+    List<Event> getAll(int carId);
 
     @Query("Select * from events where eventId=:eventId")
     Event getEventById(long eventId);
