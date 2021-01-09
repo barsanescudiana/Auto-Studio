@@ -17,13 +17,14 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class EventActivity extends AppCompatActivity {
 
     ArrayList<String> events, actions;
     DatabaseAutoStudio databaseAutoStudio;
     Button add;
-    int carId;
+    UUID carId;
     String eventName;
     Event event;
 

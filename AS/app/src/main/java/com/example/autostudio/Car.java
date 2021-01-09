@@ -8,11 +8,12 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private int carId;
+    //    @PrimaryKey(autoGenerate = true)
+    private UUID carId = UUID.randomUUID();
     private int userId;
     private String brand;
     private String model;
@@ -46,7 +47,7 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public Car(int carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
+    public Car(UUID carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
                double avgConsumption, Date expDateRCA, Date expDateITP) {
         this.carId = carId;
         this.brand = brand;
@@ -61,11 +62,11 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public int getCarId() {
+    public UUID getCarId() {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(UUID carId) {
         this.carId = carId;
     }
 
