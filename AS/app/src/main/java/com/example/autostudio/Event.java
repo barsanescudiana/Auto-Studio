@@ -111,7 +111,8 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "name='" + name + '\'' +
+                "eventID" + eventId +
+                " name='" + name + '\'' +
                 ", date=" + date +
                 ", carID=" + carId +
                 '}';
