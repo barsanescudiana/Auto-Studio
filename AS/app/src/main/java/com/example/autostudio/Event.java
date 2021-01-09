@@ -79,6 +79,12 @@ public class Event {
     }
 
     public String getInfo() {
+        if ("Service Visit".equals(category)) {
+            info += "\n" + category + ": " + name + "\nDate: " + date;
+        } else {
+            info += "\n" + category + " - Date: " + date;
+        }
+
         return info;
     }
 

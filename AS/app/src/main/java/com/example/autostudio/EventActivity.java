@@ -65,20 +65,17 @@ public class EventActivity extends AppCompatActivity {
         actionAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         actionSpinner.setAdapter(actionAdapter);
 
-        final String action = actionSpinner.getSelectedItem().toString();
-        final String eventItem = eventSpinner.getSelectedItem().toString();
-
         eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (eventSpinner.getSelectedItem().toString() == "ITP" || eventSpinner.getSelectedItem().toString() == "RCA") {
+                if (eventSpinner.getSelectedItem().toString().equals("ITP") || eventSpinner.getSelectedItem().toString().equals("RCA")) {
                     findViewById(R.id.action_layout).setVisibility(View.GONE);
                     findViewById(R.id.mechanic_layout).setVisibility(View.GONE);
                     eventName = "Renewed " + eventSpinner.getSelectedItem().toString();
-                } else if (eventSpinner.getSelectedItem().toString() == "Accident") {
+                } else if (eventSpinner.getSelectedItem().toString().equals("Accident")) {
                     findViewById(R.id.action_layout).setVisibility(View.GONE);
                     findViewById(R.id.mechanic_layout).setVisibility(View.GONE);
-                    eventName = eventItem;
+                    eventName = eventSpinner.getSelectedItem().toString();
                 } else {
                     findViewById(R.id.action_layout).setVisibility(View.VISIBLE);
                     findViewById(R.id.mechanic_layout).setVisibility(View.VISIBLE);
@@ -97,7 +94,7 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(carId != 0) {
                     TextView date = findViewById(R.id.date_input);
-                    event = new Event(eventName, new Date(date.getText().toString()), carId);
+//                    event = new Event(eventName, new Date(date.getText().toString()), carId);
                     Log.e("EVENT", event.toString());
                     databaseAutoStudio.getEventsDao().insert(event);
                 }
