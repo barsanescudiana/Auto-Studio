@@ -40,6 +40,7 @@
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/salvatore_light"
             android:hint="@string/e_g_OMV"
+            android:textColor="@color/white"
             android:inputType="text"
             android:paddingStart="12dp"
             android:textSize="14sp"
@@ -85,6 +86,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mechanicSettings"
         android:layout_width="match_parent"
@@ -95,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/gasSettings">
 
         <TextView
-            android:id="@+id/licence_label"
+            android:id="@+id/mechanic_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="29dp"
@@ -106,7 +109,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/licence_edit"
+            android:id="@+id/mechanic_edit"
             android:layout_width="364dp"
             android:layout_height="36dp"
             android:layout_marginStart="16dp"
@@ -116,12 +119,35 @@
             android:inputType="text"
             android:paddingStart="12dp"
             android:textSize="14sp"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/licence_label"
+            app:layout_constraintTop_toBottomOf="@id/mechanic_label"
             tools:ignore="RtlSymmetry" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carSettings"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_button_fill"
+            android:text="@string/add"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:fontFamily="@font/salvatore_bold"
+            android:textAlignment="center"
+            android:paddingBottom="15dp" />
+
+    </LinearLayout>
     <!--toolbar-->
     <include
         android:id="@+id/top_bottom_nav"

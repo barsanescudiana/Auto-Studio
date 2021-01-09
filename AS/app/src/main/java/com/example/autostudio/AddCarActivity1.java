@@ -70,6 +70,23 @@ public class AddCarActivity1 extends AppCompatActivity {
 
         next = findViewById(R.id.next);
 
+        Button settings = (Button) findViewById(R.id.btn_settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+        Button dashboard = (Button) findViewById(R.id.btn_main);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(dashboardIntent);
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.M)

@@ -25,6 +25,5 @@ public abstract class DatabaseAutoStudio extends RoomDatabase {
     }
 
     public abstract CarsDao getCarsDao();
-
     public abstract EventsDao getEventsDao();
 }

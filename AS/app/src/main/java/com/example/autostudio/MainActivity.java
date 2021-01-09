@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         final User user = (User) intent.getSerializableExtra("User");
         userPic = (ImageView) findViewById(R.id.userPic);
 
+        userPic.setVisibility(View.VISIBLE);
+
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
                     .centerCrop().circleCrop().into(userPic);
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Button docs = (Button) findViewById(R.id.docs);
         Button addCar = (Button) findViewById(R.id.btn_add);
 
+        //toolbar
         Button settings = (Button) findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +77,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
             }
         });
-        Button dashboard = (Button) findViewById(R.id.btn_main);
-        dashboard.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_main).setVisibility(View.GONE);
+
+
+        final Bundle bundle = new Bundle();
+        userPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(dashboardIntent);
+                bundle.putSerializable("USER", user);
+                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+                profileIntent.putExtras(bundle);
+                startActivity(profileIntent);
             }
         });
+
+        //meniu
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

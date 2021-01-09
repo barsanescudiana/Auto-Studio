@@ -57,6 +57,7 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
+                eventIntent.putExtra("CAR_ID", testCar.getCarId());
                 startActivity(eventIntent);
             }
         });
@@ -108,5 +109,22 @@ public class CarActivity extends AppCompatActivity {
                 color.setImageDrawable(getDrawable(R.drawable.white_card));
                 break;
         }
+
+        Button settings = (Button) findViewById(R.id.btn_settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+        Button dashboard = (Button) findViewById(R.id.btn_main);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(dashboardIntent);
+            }
+        });
     }
 }
