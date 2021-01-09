@@ -1,25 +1,11 @@
 package com.example.autostudio;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BlendMode;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,22 +13,9 @@ import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
 //            1400, 95, 10.7, itp, rca);
 
-    public CarsDB carsDB;
+    public DatabaseAutoStudio databaseAutoStudio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         carArrayList = new ArrayList<>();
 
-        carsDB = CarsDB.getInstance(getApplicationContext());
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
@@ -254,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected List<Car> doInBackground(Void... voids) {
-            return carsDB.getCarsDao().getAll();
+            return databaseAutoStudio.getCarsDao().getAll();
         }
 
         @Override

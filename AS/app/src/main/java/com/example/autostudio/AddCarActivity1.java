@@ -70,8 +70,6 @@ public class AddCarActivity1 extends AppCompatActivity {
 
         next = findViewById(R.id.next);
 
-        //vezi cu radio button urile
-
         next.setOnClickListener(new View.OnClickListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.M)
