@@ -21,7 +21,7 @@ import java.util.Date;
 public class EventActivity extends AppCompatActivity {
 
     ArrayList<String> events, actions;
-    EventsDB eventsDB;
+    DatabaseAutoStudio databaseAutoStudio;
     Button add;
     int carId;
     String eventName;
@@ -32,7 +32,7 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        eventsDB = EventsDB.getInstance(this);
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getIntExtra("CAR_ID", 0);
 
         events = new ArrayList<>();
@@ -92,8 +92,8 @@ public class EventActivity extends AppCompatActivity {
                 if(carId != 0) {
                     TextView date = findViewById(R.id.date_input);
                     event = new Event(eventName, new Date(date.getText().toString()), carId);
-                    Log.e("EVENT", event.toString() );
-                    eventsDB.getEventsDao().insert(event);
+                    Log.e("EVENT", event.toString());
+                    databaseAutoStudio.getEventsDao().insert(event);
                 }
             }
         });

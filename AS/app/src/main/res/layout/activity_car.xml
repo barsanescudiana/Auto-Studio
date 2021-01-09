@@ -228,7 +228,9 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="5dp"
             android:background="@drawable/events_bg"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp">
+
+        </ListView>
     </LinearLayout>
 
     <include

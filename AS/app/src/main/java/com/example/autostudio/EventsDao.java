@@ -11,14 +11,14 @@ public interface EventsDao {
     @Insert
     void insert(Event event);
 
-    @Query("Select * from events")
-    List<Event> getAll();
+    @Query("Select * from events where carId=:carId")
+    List<Event> getAll(int carId);
 
     @Query("Select * from events where eventId=:eventId")
     Event getEventById(long eventId);
 
-    @Query("Delete from events")
-    void deleteAll();
+    @Query("Delete from events where carId=:carId")
+    void deleteAll(int carId);
 
     @Query("Delete from events where eventId=:eventId")
     void deleteEventById(long eventId);

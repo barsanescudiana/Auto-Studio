@@ -23,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
     EditText mechanic, gasStation;
     Spinner car;
     Button add, delete;
-    CarsDB carsDB;
+    DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Car> carsList;
     SharedPreferences preferences;
 
@@ -144,13 +144,13 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        carsDB = CarsDB.getInstance(this);
-        carsList = (ArrayList<Car>) carsDB.getCarsDao().getAll();
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
+        carsList = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
 
         ArrayList<String> details = new ArrayList<>();
-        for(Car car : carsList) {
-            String motor = String.valueOf(car.getEngineCapacity()/1000) + "." + String.valueOf(car.getEngineCapacity()/100%10);
-            String carDetails =  car.getBrand() + " " + car.getModel() + " " + motor + " " + car.getEngineOutput() + "hp " + car.getFuel() + " " + car.getColor();
+        for (Car car : carsList) {
+            String motor = car.getEngineCapacity() / 1000 + "." + car.getEngineCapacity() / 100 % 10;
+            String carDetails = car.getBrand() + " " + car.getModel() + " " + motor + " " + car.getEngineOutput() + "hp " + car.getFuel() + " " + car.getColor();
 
             details.add(carDetails);
         }

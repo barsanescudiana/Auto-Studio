@@ -44,8 +44,6 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setExpDateRCA(new Date(rca.getText().toString()));
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
 
-                Toast.makeText(getApplicationContext(), newCar.toString(), Toast.LENGTH_LONG).show();
-
                 databaseAutoStudio.getCarsDao().insert(newCar);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

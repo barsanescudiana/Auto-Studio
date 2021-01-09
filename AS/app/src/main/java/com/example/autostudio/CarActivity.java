@@ -22,6 +22,7 @@ public class CarActivity extends AppCompatActivity {
     ImageView color;
     Button event;
     ListView eventsListView;
+    DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Event> eventsList;
 
     @Override
@@ -29,17 +30,23 @@ public class CarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car);
 
+        Bundle bundle = getIntent().getExtras();
+        testCar = (Car) bundle.getSerializable("SELECTED");
+
         eventsList = new ArrayList<>();
         eventsListView = findViewById(R.id.eventListView);
 
-        Date testDate = new Date("10/04/2019");
-        Event event1 = new Event("Changed break pads", testDate, 1);
-        Event event2 = new Event("Revision", testDate, 1);
-        Event event3 = new Event("Changed seasonal tires", testDate, 1);
+//        Date testDate = new Date("10/04/2019");
+//        Event event1 = new Event("Changed break pads", testDate, 1);
+//        Event event2 = new Event("Revision", testDate, 1);
+//        Event event3 = new Event("Changed seasonal tires", testDate, 1);
+//
+//        eventsList.add(event1);
+//        eventsList.add(event2);
+//        eventsList.add(event3);
 
-        eventsList.add(event1);
-        eventsList.add(event2);
-        eventsList.add(event3);
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
+        eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId());
 
         EventAdapter eventsAdapter = new EventAdapter(CarActivity.this, R.layout.event_list_item, eventsList, getLayoutInflater());
         eventsListView.setAdapter(eventsAdapter);
@@ -62,17 +69,15 @@ public class CarActivity extends AppCompatActivity {
             }
         });
 
-        Bundle bundle = getIntent().getExtras();
-        testCar = (Car) bundle.getSerializable("SELECTED");
-        String carName = testCar.getBrand() + " " +testCar.getModel();
-        String motor = String.valueOf(testCar.getEngineCapacity()/1000) + "." + String.valueOf(testCar.getEngineCapacity()/100%10);
+        String carName = testCar.getBrand() + " " + testCar.getModel();
+        String motor = testCar.getEngineCapacity() / 1000 + "." + testCar.getEngineCapacity() / 100 % 10;
         String details = motor + " " + testCar.getEngineOutput() + "hp " + testCar.getFuel();
         textName.setText(carName);
         textDetails.setText(details);
-        String kkm = String.valueOf(testCar.getKm()/1000) + "K";
-        String mkm = String.valueOf(testCar.getKm()/1000000) + "M";
-        String km = String.valueOf(testCar.getKm()/1000) +"."+String.valueOf(Math.round(testCar.getKm()/100)%10);
-        if(testCar.getKm() >= 100000 && testCar.getKm() <= 999999){
+        String kkm = testCar.getKm() / 1000 + "K";
+        String mkm = testCar.getKm() / 1000000 + "M";
+        String km = testCar.getKm() / 1000 + "." + Math.round(testCar.getKm() / 100) % 10;
+        if (testCar.getKm() >= 100000 && testCar.getKm() <= 999999) {
             totalKM.setText(kkm);
         } else if (testCar.getKm() > 100000000) {
             totalKM.setText(mkm);
@@ -81,7 +86,7 @@ public class CarActivity extends AppCompatActivity {
         avg.setText(String.valueOf(testCar.getAvgConsumption()));
         toITP.setText("200 d");
 
-        range.setText(String.valueOf(testCar.getKm()/testCar.getAvgConsumption()));
+        range.setText(String.valueOf(testCar.getKm() / testCar.getAvgConsumption()));
 
         switch (testCar.getColor()) {
             case "Blue":
