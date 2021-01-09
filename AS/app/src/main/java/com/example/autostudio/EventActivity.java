@@ -25,7 +25,7 @@ public class EventActivity extends AppCompatActivity {
     ArrayList<String> events, actions;
     DatabaseAutoStudio databaseAutoStudio;
     Button add;
-    String carId;
+    int carId;
     String eventName;
     Event event;
 
@@ -37,7 +37,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
-        carId = getIntent().getStringExtra("CAR_ID");
+        carId = getIntent().getIntExtra("CAR_ID", -1);
 
         Log.e("ID MASINA", String.valueOf(carId));
 
@@ -98,12 +98,12 @@ public class EventActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(carId != "") {
+                if (carId != -1) {
                     TextView date = findViewById(R.id.date_input);
                     EditText costText = findViewById(R.id.value_edit);
                     Double cost;
                     Spinner costCurrency = findViewById(R.id.value_spinner);
-                    if(costCurrency.getSelectedItem().equals("EUR")) {
+                    if (costCurrency.getSelectedItem().equals("EUR")) {
                         cost = 4.8 * Double.parseDouble(costText.getText().toString());
                     } else {
                         cost = Double.parseDouble(costText.getText().toString());

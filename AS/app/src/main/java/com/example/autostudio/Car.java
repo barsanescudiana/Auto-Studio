@@ -13,10 +13,8 @@ import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    @NonNull
-    @PrimaryKey (autoGenerate = true)
-    private Integer carId;
-
+    @PrimaryKey(autoGenerate = true)
+    private int carId;
     private int userId;
     private String brand;
     private String model;
@@ -50,7 +48,7 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public Car(Integer carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
+    public Car(int carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
                double avgConsumption, Date expDateRCA, Date expDateITP) {
         this.carId = carId;
         this.brand = brand;
@@ -65,11 +63,11 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public Integer getCarId() {
+    public int getCarId() {
         return carId;
     }
 
-    public void setCarId(Integer carId) {
+    public void setCarId(int carId) {
         this.carId = carId;
     }
 
