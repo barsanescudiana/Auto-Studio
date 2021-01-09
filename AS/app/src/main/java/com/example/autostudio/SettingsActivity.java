@@ -2,6 +2,7 @@ package com.example.autostudio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -178,6 +179,23 @@ public class SettingsActivity extends AppCompatActivity {
                 add.setVisibility(View.INVISIBLE);
 
                 checkPreferences();
+            }
+        });
+
+        Button settings = (Button) findViewById(R.id.btn_settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+        Button dashboard = (Button) findViewById(R.id.btn_main);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(dashboardIntent);
             }
         });
 

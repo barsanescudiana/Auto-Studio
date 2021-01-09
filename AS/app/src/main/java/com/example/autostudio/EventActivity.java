@@ -2,10 +2,12 @@ package com.example.autostudio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.lang.reflect.Array;
@@ -49,5 +51,22 @@ public class EventActivity extends AppCompatActivity {
                 events);
         eventAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         eventSpinner.setAdapter(eventAdapter);
+
+        Button settings = (Button) findViewById(R.id.btn_settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+            }
+        });
+        Button dashboard = (Button) findViewById(R.id.btn_main);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(dashboardIntent);
+            }
+        });
     }
 }
