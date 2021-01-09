@@ -20,14 +20,14 @@ public class Event {
     private Date date;
     private String info;
     private Double cost;
-    private int carId;
+    private String carId;
 
     @Ignore
     public Event() {
     }
 
     @Ignore
-    public Event(String category, String name, Date date, String info, Double cost, int carId) {
+    public Event(String category, String name, Date date, String info, Double cost, String carId) {
         this.category = category;
         this.name = name;
         this.date = date;
@@ -36,7 +36,7 @@ public class Event {
         this.carId = carId;
     }
 
-    public Event(int eventId, String category, String name, Date date, String info, Double cost, int carId) {
+    public Event(int eventId, String category, String name, Date date, String info, Double cost, String carId) {
         this.eventId = eventId;
         this.category = category;
         this.name = name;
@@ -100,11 +100,11 @@ public class Event {
         this.cost = cost;
     }
 
-    public int getCarId() {
+    public String getCarId() {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(String carId) {
         this.carId = carId;
     }
 

@@ -62,8 +62,8 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public UUID getCarId() {
-        return carId;
+    public String getCarId() {
+        return carId.toString();
     }
 
     public void setCarId(UUID carId) {

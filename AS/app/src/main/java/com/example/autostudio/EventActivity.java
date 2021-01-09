@@ -25,7 +25,7 @@ public class EventActivity extends AppCompatActivity {
     ArrayList<String> events, actions;
     DatabaseAutoStudio databaseAutoStudio;
     Button add;
-    UUID carId;
+    String carId;
     String eventName;
     Event event;
 
@@ -37,7 +37,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
-        carId = getIntent().getIntExtra("CAR_ID", 0);
+        carId = getIntent().getStringExtra("CAR_ID");
 
         Log.e("ID MASINA", String.valueOf(carId));
 
@@ -98,7 +98,7 @@ public class EventActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(carId != 0) {
+                if(carId != "") {
                     TextView date = findViewById(R.id.date_input);
                     EditText costText = findViewById(R.id.value_edit);
                     Double cost;
