@@ -66,16 +66,22 @@ public class EventActivity extends AppCompatActivity {
         actionSpinner.setAdapter(actionAdapter);
 
         final String action = actionSpinner.getSelectedItem().toString();
+        final String eventItem = eventSpinner.getSelectedItem().toString();
 
         eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (eventSpinner.getSelectedItem().toString() == "ITP" || eventSpinner.getSelectedItem().toString() == "RCA") {
                     findViewById(R.id.action_layout).setVisibility(View.GONE);
+                    findViewById(R.id.mechanic_layout).setVisibility(View.GONE);
                     eventName = "Renewed " + eventSpinner.getSelectedItem().toString();
+                } else if (eventSpinner.getSelectedItem().toString() == "Accident") {
+                    findViewById(R.id.action_layout).setVisibility(View.GONE);
+                    findViewById(R.id.mechanic_layout).setVisibility(View.GONE);
+                    eventName = eventItem;
                 } else {
                     findViewById(R.id.action_layout).setVisibility(View.VISIBLE);
-                    eventName = action;
+                    findViewById(R.id.mechanic_layout).setVisibility(View.VISIBLE);
                 }
             }
 
