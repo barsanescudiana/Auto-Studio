@@ -105,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (account != null) {
                     User user = new User(account.getId(), account.getDisplayName(),
                             account.getEmail(), account.getPhotoUrl().toString());
+
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("User", user);
                     startActivity(intent);

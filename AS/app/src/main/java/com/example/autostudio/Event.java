@@ -15,8 +15,10 @@ import java.util.Date;
 public class Event {
     @PrimaryKey(autoGenerate = true)
     private int eventId;
+    private String category;
     private String name;
     private Date date;
+    private String info;
     private int carId;
 
     @Ignore
@@ -24,16 +26,20 @@ public class Event {
     }
 
     @Ignore
-    public Event(String name, Date date, int carId) {
+    public Event(String category, String name, Date date, String info, int carId) {
+        this.category = category;
         this.name = name;
         this.date = date;
+        this.info = info;
         this.carId = carId;
     }
 
-    public Event(int eventId, String name, Date date, int carId) {
+    public Event(int eventId, String category, String name, Date date, String info, int carId) {
         this.eventId = eventId;
+        this.category = category;
         this.name = name;
         this.date = date;
+        this.info = info;
         this.carId = carId;
     }
 
@@ -43,6 +49,14 @@ public class Event {
 
     public void setEventId(int eventId) {
         this.eventId = eventId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -59,6 +73,14 @@ public class Event {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public int getCarId() {
