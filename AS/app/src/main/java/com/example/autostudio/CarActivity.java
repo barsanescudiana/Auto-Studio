@@ -47,7 +47,7 @@ public class CarActivity extends AppCompatActivity {
 //        eventsList.add(event3);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
-        eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId());
+        eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId().toString());
 
         EventAdapter eventsAdapter = new EventAdapter(CarActivity.this, R.layout.event_list_item, eventsList, getLayoutInflater());
         eventsListView.setAdapter(eventsAdapter);

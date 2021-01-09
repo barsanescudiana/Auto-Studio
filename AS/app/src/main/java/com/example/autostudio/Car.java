@@ -1,5 +1,6 @@
 package com.example.autostudio;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
@@ -12,8 +13,10 @@ import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    @PrimaryKey
-    private UUID carId = UUID.randomUUID();
+    @NonNull
+    @PrimaryKey (autoGenerate = true)
+    private Integer carId;
+
     private int userId;
     private String brand;
     private String model;
@@ -47,7 +50,7 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public Car(UUID carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
+    public Car(Integer carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
                double avgConsumption, Date expDateRCA, Date expDateITP) {
         this.carId = carId;
         this.brand = brand;
@@ -62,11 +65,11 @@ public class Car implements Serializable {
         this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
     }
 
-    public String getCarId() {
-        return carId.toString();
+    public Integer getCarId() {
+        return carId;
     }
 
-    public void setCarId(UUID carId) {
+    public void setCarId(Integer carId) {
         this.carId = carId;
     }
 
