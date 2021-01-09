@@ -25,4 +25,5 @@ public abstract class CarsDB extends RoomDatabase {
     }
 
     public abstract CarsDao getCarsDao();
+
 }

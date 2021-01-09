@@ -57,6 +57,7 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
+                eventIntent.putExtra("CAR_ID", testCar.getCarId());
                 startActivity(eventIntent);
             }
         });

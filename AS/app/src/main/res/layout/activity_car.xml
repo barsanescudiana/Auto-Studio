@@ -71,8 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/status"
+        android:fontFamily="@font/salvatore_light"
         android:paddingTop="20dp"
-        android:paddingStart="50dp"
+        android:paddingStart="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
@@ -201,7 +202,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="50dp"
+        android:fontFamily="@font/salvatore_light"
+        android:letterSpacing="0.2"
+        android:paddingStart="30dp"
         android:text="@string/latest_events"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -220,8 +223,10 @@
 
         <ListView
             android:id="@+id/eventListView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="200dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp"
             android:background="@drawable/events_bg"
             android:paddingStart="10dp" />
     </LinearLayout>

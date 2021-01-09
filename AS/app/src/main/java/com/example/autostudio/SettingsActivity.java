@@ -182,14 +182,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        Button settings = (Button) findViewById(R.id.btn_settings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
-            }
-        });
+        findViewById(R.id.btn_settings).setVisibility(View.GONE);
+
         Button dashboard = (Button) findViewById(R.id.btn_main);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
