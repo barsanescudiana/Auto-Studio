@@ -71,6 +71,7 @@
     <string name="cost">Cost</string>
     <string name="your_preferred_mechanic">Your preferred mechanic</string>
     <string name="gas_station">Gas station</string>
+    <string name="logout">Logout</string>
     <string-array name="measurements">
         <item> hp </item>
         <item> kW </item>

@@ -73,6 +73,13 @@ public class EventActivity extends AppCompatActivity {
         actionAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         actionSpinner.setAdapter(actionAdapter);
 
+
+        EditText mechanic = findViewById(R.id.mechanic_edit);
+        if(mechanic.getVisibility() == View.VISIBLE) {
+            String myMechanic = preferences.getString("MECHANIC", "");
+            mechanic.setText(myMechanic);
+        }
+
         eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -86,10 +93,7 @@ public class EventActivity extends AppCompatActivity {
                     eventName = eventSpinner.getSelectedItem().toString();
                 } else {
                     findViewById(R.id.action_layout).setVisibility(View.VISIBLE);
-                    EditText mechanic = findViewById(R.id.mechanic_layout);
-                    mechanic.setVisibility(View.VISIBLE);
-                    String myMechanic = preferences.getString("MECHANIC", "");
-                    mechanic.setText(myMechanic);
+                    findViewById(R.id.mechanic_layout).setVisibility(View.VISIBLE);
                 }
             }
 
@@ -137,6 +141,7 @@ public class EventActivity extends AppCompatActivity {
 
                     Log.e("EVENT", event.toString());
                     databaseAutoStudio.getEventsDao().insert(event);
+                    Log.e("EVENT DUPA INSERT", event.toString());
                 }
             }
         });
