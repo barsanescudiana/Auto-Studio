@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName = "events",
-        foreignKeys = @ForeignKey(entity = Car.class, parentColumns = "eventId", childColumns = "carId"),
+        foreignKeys = @ForeignKey(entity = Car.class, parentColumns = "carId", childColumns = "eventId"),
         indices = @Index("carId")
 )
 public class Event {
