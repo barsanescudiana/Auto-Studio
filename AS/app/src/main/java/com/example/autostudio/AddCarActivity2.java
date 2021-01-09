@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class AddCarActivity2 extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CarsDB carsDB = CarsDB.getInstance(getApplicationContext());
+                DatabaseAutoStudio databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
 
                 newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
                 newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
@@ -45,9 +44,7 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setExpDateRCA(new Date(rca.getText().toString()));
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
 
-                Toast.makeText(getApplicationContext(), newCar.toString(), Toast.LENGTH_LONG).show();
-
-                carsDB.getCarsDao().insert(newCar);
+                databaseAutoStudio.getCarsDao().insert(newCar);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

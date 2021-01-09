@@ -44,7 +44,6 @@ public class AddCarActivity1 extends AppCompatActivity {
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
                     .centerCrop().circleCrop().into(userPic);
-            Log.d("User", user.toString());
         }
 
         addCarNav = (Button) findViewById(R.id.btn_add);
@@ -97,47 +96,39 @@ public class AddCarActivity1 extends AppCompatActivity {
 
                 if(black.isChecked()) {
                     newCar.setColor("Black");
-                    Toast.makeText(getApplicationContext(), "selected: Black", Toast.LENGTH_SHORT).show();
                 }
 
                 if(white.isChecked()) {
                     newCar.setColor("White");
-                    Toast.makeText(getApplicationContext(), "selected: White", Toast.LENGTH_SHORT).show();
                 }
 
                 if(grey.isChecked()) {
                     newCar.setColor("Grey");
-                    Toast.makeText(getApplicationContext(), "selected: Grey", Toast.LENGTH_SHORT).show();
                     grey.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
                 if(red.isChecked()) {
                     newCar.setColor("Red");
-                    Toast.makeText(getApplicationContext(), "selected: Red", Toast.LENGTH_SHORT).show();
                     red.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
                 if(green.isChecked()) {
                     newCar.setColor("Green");
-                    Toast.makeText(getApplicationContext(), "selected: Green", Toast.LENGTH_SHORT).show();
                     green.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
                 if(yellow.isChecked()) {
                     newCar.setColor("Yellow");
-                    Toast.makeText(getApplicationContext(), "selected: Yellow", Toast.LENGTH_SHORT).show();
                     yellow.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
                 if(blue.isChecked()) {
                     newCar.setColor("Blue");
-                    Toast.makeText(getApplicationContext(), "selected: Blue", Toast.LENGTH_SHORT).show();
                     blue.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
                 if(purple.isChecked()) {
                     newCar.setColor("Purple");
-                    Toast.makeText(getApplicationContext(), "selected: Purple", Toast.LENGTH_SHORT).show();
                     purple.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 

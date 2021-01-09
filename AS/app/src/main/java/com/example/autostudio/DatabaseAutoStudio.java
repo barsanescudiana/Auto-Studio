@@ -9,13 +9,13 @@ import androidx.room.TypeConverters;
 
 @Database(entities = {Car.class, Event.class}, version = 3, exportSchema = false)
 @TypeConverters({DateConverter.class})
-public abstract class CarsDB extends RoomDatabase {
-    private final static String DB_NAME = "cars.db";
-    private static CarsDB instance;
+public abstract class DatabaseAutoStudio extends RoomDatabase {
+    private final static String DB_NAME = "dbAutoStudio.db";
+    private static DatabaseAutoStudio instance;
 
-    public static CarsDB getInstance(Context context) {
+    public static DatabaseAutoStudio getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context, CarsDB.class, DB_NAME)
+            instance = Room.databaseBuilder(context, DatabaseAutoStudio.class, DB_NAME)
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();
@@ -25,5 +25,5 @@ public abstract class CarsDB extends RoomDatabase {
     }
 
     public abstract CarsDao getCarsDao();
-
+    public abstract EventsDao getEventsDao();
 }
