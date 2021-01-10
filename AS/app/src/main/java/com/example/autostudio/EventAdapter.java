@@ -35,8 +35,6 @@ public class EventAdapter extends BaseAdapter {
     private final ArrayList<Event> eventsList;
     private final LayoutInflater layoutInflater;
 
-    public final Date current = new Date();
-
     public EventAdapter(@NonNull Context context, int resource, ArrayList<Event> eventsList, LayoutInflater layoutInflater) {
         this.context = context;
         this.resource = resource;

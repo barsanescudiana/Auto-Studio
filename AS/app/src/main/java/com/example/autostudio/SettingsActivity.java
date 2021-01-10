@@ -27,16 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
     ArrayList<Car> carsList;
     SharedPreferences preferences;
 
-    private int getIndex(Spinner spinner, String myString){
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
-                return i;
-            }
-        }
-
-        return 0;
-    }
-
     public void checkPreferences() {
         if(preferences.contains("initialized")) {
             add.setVisibility(View.INVISIBLE);

@@ -4,16 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AddCarActivity2 extends AppCompatActivity {
 
-    EditText capacity, output, avg, rca, itp;
+    EditText capacity, output, avg, rca, itp, tank;
     Button save;
     Car newCar = new Car();
 
@@ -27,6 +29,7 @@ public class AddCarActivity2 extends AppCompatActivity {
         avg = findViewById(R.id.avg_edit);
         rca = findViewById(R.id.rcaDate);
         itp = findViewById(R.id.itpDate);
+        tank = findViewById(R.id.tank_edit);
 
         save = findViewById(R.id.save);
 
@@ -41,11 +44,15 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
                 newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
                 newCar.setAvgConsumption(Double.parseDouble(avg.getText().toString()));
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+//                Date
+//                String newDate = sdf.format(rca.getText().toString());
                 newCar.setExpDateRCA(new Date(rca.getText().toString()));
+//                newDate = sdf.format(itp.getText().toString());
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
-
+                newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
+                Log.e("newCar object: ", newCar.toString());
                 databaseAutoStudio.getCarsDao().insert(newCar);
-
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }

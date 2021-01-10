@@ -13,8 +13,7 @@ import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    @PrimaryKey
-            //(autoGenerate = true)
+    @PrimaryKey (autoGenerate = true)
     private int carId;
     private int userId;
     private String brand;
@@ -27,7 +26,7 @@ public class Car implements Serializable {
     private double avgConsumption;
     private Date expDateRCA;
     private Date expDateITP;
-    private double tankCapacity;
+    private Double tankCapacity;
 
     @Ignore
     public Car() {
@@ -36,7 +35,7 @@ public class Car implements Serializable {
 
     @Ignore
     public Car(String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
-               double avgConsumption, Date expDateRCA, Date expDateITP) {
+               double avgConsumption, Date expDateRCA, Date expDateITP, double tankCapacity) {
         this.brand = brand;
         this.model = model;
         this.fuel = fuel;
@@ -45,12 +44,13 @@ public class Car implements Serializable {
         this.engineCapacity = engineCapacity;
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
-        this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
-        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.expDateRCA = new Date(expDateRCA.toString());
+        this.expDateITP = new Date(expDateITP.toString());
+        this.tankCapacity = tankCapacity;
     }
 
     public Car(int carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
-               double avgConsumption, Date expDateRCA, Date expDateITP) {
+               double avgConsumption, Date expDateRCA, Date expDateITP, double tankCapacity) {
         this.carId = carId;
         this.brand = brand;
         this.model = model;
@@ -60,8 +60,9 @@ public class Car implements Serializable {
         this.engineCapacity = engineCapacity;
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
-        this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
-        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.expDateRCA = new Date(expDateRCA.toString());
+        this.expDateITP = new Date(expDateITP.toString());
+        this.tankCapacity = tankCapacity;
     }
 
     public int getCarId() {
@@ -160,11 +161,11 @@ public class Car implements Serializable {
         this.expDateITP = expDateITP;
     }
 
-    public double getTankCapacity() {
+    public Double getTankCapacity() {
         return tankCapacity;
     }
 
-    public void setTankCapacity(double tankCapacity) {
+    public void setTankCapacity(Double tankCapacity) {
         this.tankCapacity = tankCapacity;
     }
 

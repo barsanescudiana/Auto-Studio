@@ -17,7 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class CarAdapter extends BaseAdapter {
 
@@ -27,6 +29,17 @@ public class CarAdapter extends BaseAdapter {
     private final LayoutInflater layoutInflater;
 
     public final Date current = new Date();
+
+    private Calendar toCalendar(long timestamp)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
+    }
 
     public CarAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Car> carList, LayoutInflater layoutInflater) {
         this.context = context;
@@ -55,21 +68,25 @@ public class CarAdapter extends BaseAdapter {
             String details = motor + " " + testCar.getEngineOutput() + "hp " + testCar.getFuel();
             carDetails.setText(details);
 
-            if (testCar.getExpDateRCA().after(current)) {
+            long diff = System.currentTimeMillis() - testCar.getExpDateRCA().getTime();
+
+            if (diff < 0) {
                 Button btnRCA = view.findViewById(R.id.btn_RCA);
                 btnRCA.setBackgroundResource(R.drawable.btn_green);
 
             } else {
                 Button btnRCA = view.findViewById(R.id.btn_RCA);
-//                btnRCA.setBackgroundResource(R.drawable.btn_red);
+                btnRCA.setBackgroundResource(R.drawable.btn_red);
             }
 
-            if(testCar.getExpDateITP().after(current)) {
+            diff = System.currentTimeMillis() - testCar.getExpDateITP().getTime();
+
+            if(diff < 0) {
                 Button btnITP = view.findViewById(R.id.btn_ITP);
                 btnITP.setBackgroundResource(R.drawable.btn_green);
             }  else {
                 Button btnITP = view.findViewById(R.id.btn_ITP);
-//                btnITP.setBackgroundResource(R.drawable.btn_red);
+                btnITP.setBackgroundResource(R.drawable.btn_red);
             }
             View card_bg = view.findViewById(R.id.card_bg);
 
@@ -123,5 +140,11 @@ public class CarAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
     }
 }

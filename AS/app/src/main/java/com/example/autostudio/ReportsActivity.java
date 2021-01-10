@@ -14,6 +14,7 @@ public class ReportsActivity extends AppCompatActivity {
     DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Car> cars;
     ArrayList<Event> events;
+    Button carRep, eventRep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,23 @@ public class ReportsActivity extends AppCompatActivity {
 
         cars = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
         events = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll();
+
+        carRep = findViewById(R.id.car_report);
+        eventRep = findViewById(R.id.event_report);
+
+        carRep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_report, new ReportFragment()).commit();
+            }
+        });
+
+        eventRep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_report, new ReportFragment()).commit();
+            }
+        });
 
         //toolbar
         Button settings = (Button) findViewById(R.id.btn_settings);

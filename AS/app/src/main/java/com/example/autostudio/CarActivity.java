@@ -28,6 +28,17 @@ public class CarActivity extends AppCompatActivity {
     DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Event> eventsList;
 
+    private Calendar toCalendar(long timestamp)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,21 +92,31 @@ public class CarActivity extends AppCompatActivity {
         textDetails.setText(details);
         String kkm = testCar.getKm() / 1000 + "K";
         String mkm = testCar.getKm() / 1000000 + "M";
-        String km = testCar.getKm() / 1000 + "." + Math.round(testCar.getKm() / 100) % 10;
-        if (testCar.getKm() >= 100000 && testCar.getKm() <= 999999) {
+        if (testCar.getKm() >= 100 && testCar.getKm() <= 999999) {
             totalKM.setText(kkm);
         } else if (testCar.getKm() > 100000000) {
             totalKM.setText(mkm);
-        } else
-            totalKM.setText(km);
+        }
+
         avg.setText(String.valueOf(testCar.getAvgConsumption()));
 
-//        long msDiff = Calendar.getInstance().getTimeInMillis() - testDate.getTimeInMillis();
-//        long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+        Calendar date = toCalendar(testCar.getExpDateITP().getTime());
 
-        toITP.setText("200 d");
+        long msDiff = Calendar.getInstance().getTimeInMillis() - date.getTimeInMillis();
+        long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
 
-        range.setText(String.valueOf(testCar.getKm() / testCar.getAvgConsumption()));
+        Log.e("DAYS DIFF", String.valueOf(daysDiff) );
+//
+//        Date today = new Date();
+//        long diff = today.getTime() - testCar.getExpDateITP().getTime();
+
+        toITP.setText(String.valueOf(daysDiff) + " d");
+
+        //pt fiecare trip, din tank capacity trb sa scadem (triprange * avg) / 100
+        //10.7 .... 100km
+        //x ...... 50km
+
+        range.setText(String.valueOf((testCar.getTankCapacity() / testCar.getAvgConsumption()) * 100 - 50));
 
         switch (testCar.getColor()) {
             case "Blue":

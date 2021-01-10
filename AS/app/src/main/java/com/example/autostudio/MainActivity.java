@@ -27,15 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView carList;
 
     public ArrayList<Car> carArrayList;
-    public Date itp = new Date(2021, 10, 27);
-    public Date rca = new Date(2021, 8, 27);
-
-//    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
-//            1400, 95, 10.7, itp, rca);
-//    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
-//            1400, 95, 10.7, itp, rca);
-//    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
-//            1400, 95, 10.7, itp, rca);
 
     public DatabaseAutoStudio databaseAutoStudio;
 
@@ -47,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         carArrayList = new ArrayList<>();
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
+
+//        databaseAutoStudio.getCarsDao().deleteAll();
 
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
@@ -96,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-//                Intent tripIntent = new Intent(getApplicationContext(), TripActivity.class);
-//                startActivity(tripIntent);
-//              //mainframelayout.getForeground().setAlpha(220)
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment, new NewTripFragment()).commit();
             }
         });
@@ -142,8 +132,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(carIntent);
             }
         });
-        CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
+
+        final CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
+
+        carList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Car selectedCar = carArrayList.get(position);
+
+                databaseAutoStudio.getEventsDao().deleteAll(selectedCar.getCarId());
+                databaseAutoStudio.getCarsDao().deleteEventById(selectedCar.getCarId());
+
+                carArrayList.remove(position);
+                carArrayList = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
+                adapter.notifyDataSetChanged();
+                return true;
+            }
+        });
 
         //new JSONTasks().execute();
         new GetCarsAsyncTask().execute();

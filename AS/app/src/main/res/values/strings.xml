@@ -35,7 +35,7 @@
     <string name="clio">Clio</string>
     <string name="fuel">Fuel</string>
     <string name="petrol">Petrol</string>
-    <string name="km_number">240K</string>
+    <string name="km_number">240000</string>
     <string name="km_t">KM</string>
     <string name="color">Color</string>
     <string name="next">Next</string>
@@ -74,6 +74,10 @@
     <string name="logout">Logout</string>
     <string name="cars_report">Cars report</string>
     <string name="events_report">Events report</string>
+    <string name="engine_output">Engine output</string>
+    <string name="tank_capacity">Tank capacity</string>
+    <string name="_44">44</string>
+    <string name="report_title">Report title</string>
     <string-array name="measurements">
         <item> hp </item>
         <item> kW </item>

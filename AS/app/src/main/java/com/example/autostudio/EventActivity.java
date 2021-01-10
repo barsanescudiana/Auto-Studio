@@ -38,10 +38,11 @@ public class EventActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
 
-        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getIntExtra("CAR_ID", -1);
-
+        //Toast.makeText(getApplicationContext(), String.valueOf(carId), Toast.LENGTH_LONG).show();
         Log.e("ID MASINA", String.valueOf(carId));
+
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
 
         events = new ArrayList<>();
 
@@ -126,7 +127,7 @@ public class EventActivity extends AppCompatActivity {
                                     new Date(date.getText().toString()),
                                     "",
                                     cost,
-                                    carId);
+                                    3);
                             break;
                         case "Service visit":
                             EditText mechanic = findViewById(R.id.mechanic_edit);

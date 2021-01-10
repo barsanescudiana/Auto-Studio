@@ -20,8 +20,6 @@ public class Event {
     private Date date;
     private String info;
     private Double cost;
-
-    @ForeignKey(entity = Car.class, parentColumns = "carId", childColumns = "eventId")
     private int carId;
 
     @Ignore
@@ -113,10 +111,13 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "eventID" + eventId +
-                " name='" + name + '\'' +
+                "eventId=" + eventId +
+                ", category='" + category + '\'' +
+                ", name='" + name + '\'' +
                 ", date=" + date +
-                ", carID=" + carId +
+                ", info='" + info + '\'' +
+                ", cost=" + cost +
+                ", carId=" + carId +
                 '}';
     }
 }
