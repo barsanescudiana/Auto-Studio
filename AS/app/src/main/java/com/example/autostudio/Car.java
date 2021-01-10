@@ -1,6 +1,7 @@
 package com.example.autostudio;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
@@ -13,10 +14,10 @@ import java.util.UUID;
 
 @Entity(tableName = "cars")
 public class Car implements Serializable {
-    @PrimaryKey
-            //(autoGenerate = true)
-    private int carId;
-    private int userId;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "car_id")
+    private long carId;
+    private long userId;
     private String brand;
     private String model;
     private String fuel;
@@ -35,8 +36,8 @@ public class Car implements Serializable {
     }
 
     @Ignore
-    public Car(String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
-               double avgConsumption, Date expDateRCA, Date expDateITP) {
+    public Car(long userId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput, double avgConsumption, Date expDateRCA, Date expDateITP, double tankCapacity) {
+        this.userId = userId;
         this.brand = brand;
         this.model = model;
         this.fuel = fuel;
@@ -46,12 +47,14 @@ public class Car implements Serializable {
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
         this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
-        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.expDateITP = new Date(expDateRCA.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.tankCapacity = tankCapacity;
     }
 
-    public Car(int carId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput,
-               double avgConsumption, Date expDateRCA, Date expDateITP) {
+
+    public Car(long carId, long userId, String brand, String model, String fuel, double km, String color, int engineCapacity, int engineOutput, double avgConsumption, Date expDateRCA, Date expDateITP, double tankCapacity) {
         this.carId = carId;
+        this.userId = userId;
         this.brand = brand;
         this.model = model;
         this.fuel = fuel;
@@ -61,19 +64,28 @@ public class Car implements Serializable {
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
         this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
-        this.expDateITP = new Date(expDateITP.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.expDateITP = new Date(expDateRCA.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.tankCapacity = tankCapacity;
     }
 
-    public int getCarId() {
+    public long getCarId() {
         return carId;
+    }
+
+    public void setCarId(long carId) {
+        this.carId = carId;
+    }
+
+    public long getUserId() {
+        return userId;
     }
 
     public void setCarId(int carId) {
         this.carId = carId;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public void setUserId(int userId) {

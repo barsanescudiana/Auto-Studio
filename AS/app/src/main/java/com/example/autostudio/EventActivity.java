@@ -25,7 +25,7 @@ public class EventActivity extends AppCompatActivity {
     ArrayList<String> events, actions;
     DatabaseAutoStudio databaseAutoStudio;
     Button add;
-    int carId;
+    long carId;
     String eventName;
     Event event;
 
@@ -39,7 +39,7 @@ public class EventActivity extends AppCompatActivity {
         preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
-        carId = getIntent().getIntExtra("CAR_ID", -1);
+        carId = getIntent().getLongExtra("CAR_ID", -1);
 
         Log.e("ID MASINA", String.valueOf(carId));
 
@@ -59,14 +59,14 @@ public class EventActivity extends AppCompatActivity {
         actions.add("Engine");
         actions.add("Suspension & break");
 
-        final Spinner eventSpinner = (Spinner) findViewById(R.id.event_spinner);
+        final Spinner eventSpinner = findViewById(R.id.event_spinner);
         ArrayAdapter<String> eventAdapter = new ArrayAdapter<>(this,
                 R.layout.event_spinner_item,
                 events);
         eventAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
         eventSpinner.setAdapter(eventAdapter);
 
-        final Spinner actionSpinner = (Spinner) findViewById(R.id.action_spinner);
+        final Spinner actionSpinner = findViewById(R.id.action_spinner);
         ArrayAdapter<String> actionAdapter = new ArrayAdapter<>(this,
                 R.layout.event_spinner_item,
                 actions);
@@ -146,7 +146,7 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
-        Button settings = (Button) findViewById(R.id.btn_settings);
+        Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +154,7 @@ public class EventActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
             }
         });
-        Button dashboard = (Button) findViewById(R.id.btn_main);
+        Button dashboard = findViewById(R.id.btn_main);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

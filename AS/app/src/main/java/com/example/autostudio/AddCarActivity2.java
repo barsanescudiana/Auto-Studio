@@ -44,14 +44,14 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setExpDateRCA(new Date(rca.getText().toString()));
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
 
-                databaseAutoStudio.getCarsDao().insert(newCar);
+                databaseAutoStudio.getCarsDao().insertCar(newCar);
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        Button settings = (Button) findViewById(R.id.btn_settings);
+        Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class AddCarActivity2 extends AppCompatActivity {
                 startActivity(settingsIntent);
             }
         });
-        Button dashboard = (Button) findViewById(R.id.btn_main);
+        Button dashboard = findViewById(R.id.btn_main);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

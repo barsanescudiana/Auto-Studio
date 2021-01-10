@@ -42,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
         databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
 
         final Intent intent = getIntent();
+//
+//        databaseAutoStudio.getEventsDao().deleteAll();
+//        databaseAutoStudio.getCarsDao().deleteAll();
 
         final User user = (User) intent.getSerializableExtra("User");
-        userPic = (ImageView) findViewById(R.id.userPic);
+        userPic = findViewById(R.id.userPic);
 
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
@@ -52,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             Log.d("User", user.toString());
         }
 
-        Button newTrip = (Button) findViewById(R.id.newTrip);
-        Button refill = (Button) findViewById(R.id.refill);
-        Button docs = (Button) findViewById(R.id.docs);
-        Button addCar = (Button) findViewById(R.id.btn_add);
+        Button newTrip = findViewById(R.id.newTrip);
+        Button refill = findViewById(R.id.refill);
+        Button docs = findViewById(R.id.docs);
+        Button addCar = findViewById(R.id.btn_add);
 
         //toolbar
-        Button settings = (Button) findViewById(R.id.btn_settings);
+        Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        carList = (ListView) findViewById(R.id.carList);
+        carList = findViewById(R.id.carList);
 
         carList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

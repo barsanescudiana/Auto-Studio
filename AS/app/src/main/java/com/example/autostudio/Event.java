@@ -1,5 +1,6 @@
 package com.example.autostudio;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
@@ -8,28 +9,29 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "events",
-        foreignKeys = @ForeignKey(entity = Car.class, parentColumns = "carId", childColumns = "eventId", onDelete = ForeignKey.CASCADE)
+@Entity(tableName = "events"
 //        indices = @Index("carId")
 )
 public class Event {
     @PrimaryKey(autoGenerate = true)
-    private int eventId;
+    @ColumnInfo(name = "event_id")
+    private long eventId;
     private String category;
     private String name;
     private Date date;
     private String info;
     private Double cost;
 
-    @ForeignKey(entity = Car.class, parentColumns = "carId", childColumns = "eventId")
-    private int carId;
+    @ForeignKey(entity = Car.class, parentColumns = "car_id", childColumns = "event_id")
+    @ColumnInfo(name = "car_id")
+    private long carId;
 
     @Ignore
     public Event() {
     }
 
     @Ignore
-    public Event(String category, String name, Date date, String info, Double cost, int carId) {
+    public Event(String category, String name, Date date, String info, Double cost, long carId) {
         this.category = category;
         this.name = name;
         this.date = date;
@@ -38,7 +40,7 @@ public class Event {
         this.carId = carId;
     }
 
-    public Event(int eventId, String category, String name, Date date, String info, Double cost, int carId) {
+    public Event(long eventId, String category, String name, Date date, String info, Double cost, long carId) {
         this.eventId = eventId;
         this.category = category;
         this.name = name;
@@ -48,11 +50,11 @@ public class Event {
         this.carId = carId;
     }
 
-    public int getEventId() {
+    public long getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(long eventId) {
         this.eventId = eventId;
     }
 
@@ -102,11 +104,11 @@ public class Event {
         this.cost = cost;
     }
 
-    public int getCarId() {
+    public long getCarId() {
         return carId;
     }
 
-    public void setCarId(int carId) {
+    public void setCarId(long carId) {
         this.carId = carId;
     }
 
