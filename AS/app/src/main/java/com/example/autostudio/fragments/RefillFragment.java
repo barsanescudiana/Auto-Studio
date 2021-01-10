@@ -70,7 +70,6 @@ public class RefillFragment extends Fragment {
 
         car.setAdapter(adapter);
 
-        preferences = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         car.setSelection(preferences.getInt("CAR_INDEX", 0));
 
         close.setOnClickListener(new View.OnClickListener() {

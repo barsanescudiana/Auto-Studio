@@ -94,69 +94,54 @@ public class AddCarActivity1 extends AppCompatActivity {
                 if(black.isChecked()) {
                     newCar.setColor("Black");
                 }
-
                 if(white.isChecked()) {
                     newCar.setColor("White");
                 }
-
                 if(grey.isChecked()) {
                     newCar.setColor("Grey");
                     grey.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if(red.isChecked()) {
                     newCar.setColor("Red");
                     red.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if(green.isChecked()) {
                     newCar.setColor("Green");
                     green.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if(yellow.isChecked()) {
                     newCar.setColor("Yellow");
                     yellow.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if (blue.isChecked()) {
                     newCar.setColor("Blue");
                     blue.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if (purple.isChecked()) {
                     newCar.setColor("Purple");
                     purple.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
-
                 if (brand.getText().length() == 0)
                     brand.setError("Brand is required!");
-                else newCar.setBrand(brand.getText().toString());
-
-                if (model.getText().length() == 0)
+                else if (model.getText().length() == 0)
                     model.setError("Model is required");
-                else newCar.setModel(model.getText().toString());
-
-                if (fuel.getText().length() == 0)
+                else if (fuel.getText().length() == 0)
                     fuel.setError("Fuel is required");
-                else newCar.setFuel(fuel.getText().toString());
-
-                if (km.getText().length() == 0)
+                else if (km.getText().length() == 0)
                     km.setError("KM is required!");
-                else newCar.setKm(Double.parseDouble(km.getText().toString()));
+                else {
+                    newCar.setBrand(brand.getText().toString());
+                    newCar.setModel(model.getText().toString());
+                    newCar.setFuel(fuel.getText().toString());
+                    newCar.setKm(Double.parseDouble(km.getText().toString()));
 
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("NEW", newCar);
 
-//                newCar.setBrand(brand.getText().length() == 0 ? brand.setError("Brand is required") : brand.getText().toString());
-//                newCar.setModel(model.getText().toString());
-//                newCar.setFuel(fuel.getText().toString());
-//                newCar.setKm(Double.parseDouble(km.getText().toString()));
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("NEW", newCar);
-
-                Intent nextAdd = new Intent(getApplicationContext(), AddCarActivity2.class);
-                nextAdd.putExtras(bundle);
-                startActivity(nextAdd);
+                    Intent nextAdd = new Intent(getApplicationContext(), AddCarActivity2.class);
+                    nextAdd.putExtras(bundle);
+                    startActivity(nextAdd);
+                }
             }
         });
 
