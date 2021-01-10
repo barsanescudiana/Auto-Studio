@@ -14,7 +14,7 @@ import java.util.Date;
 public class AddCarActivity2 extends AppCompatActivity {
 
     EditText capacity, output, avg, rca, itp;
-    Button save;
+    Button save, addCarNav;
     Car newCar = new Car();
 
     @Override
@@ -27,6 +27,9 @@ public class AddCarActivity2 extends AppCompatActivity {
         avg = findViewById(R.id.avg_edit);
         rca = findViewById(R.id.rcaDate);
         itp = findViewById(R.id.itpDate);
+
+        addCarNav = findViewById(R.id.btn_add);
+        addCarNav.setVisibility(View.GONE);
 
         save = findViewById(R.id.save);
 
