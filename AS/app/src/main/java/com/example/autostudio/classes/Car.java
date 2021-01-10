@@ -1,4 +1,4 @@
-package com.example.autostudio;
+package com.example.autostudio.classes;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

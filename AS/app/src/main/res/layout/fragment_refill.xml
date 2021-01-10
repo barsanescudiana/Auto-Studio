@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".RefillFragment"
+    tools:context=".fragments.RefillFragment"
     android:layout_gravity="center">
 
     <!-- TODO: Update blank fragment layout -->

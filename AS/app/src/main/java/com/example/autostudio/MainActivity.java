@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,8 +17,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.autostudio.adapters.CarAdapter;
+import com.example.autostudio.classes.Car;
+import com.example.autostudio.classes.User;
+import com.example.autostudio.fragments.NewTripFragment;
+import com.example.autostudio.fragments.RefillFragment;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,10 +30,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
 
         final Intent intent = getIntent();
-//
-//        databaseAutoStudio.getEventsDao().deleteAll();
-//        databaseAutoStudio.getCarsDao().deleteAll();
 
         final User user = (User) intent.getSerializableExtra("User");
         userPic = findViewById(R.id.userPic);
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
                     .centerCrop().circleCrop().into(userPic);
-            Log.d("User", user.toString());
         }
 
         Button newTrip = findViewById(R.id.newTrip);
@@ -73,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         Button addCar = findViewById(R.id.btn_add);
         weather = findViewById(R.id.docs2);
 
-        //toolbar
         Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //meniu
         newTrip.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -148,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         final CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
 
-        new JSONTasks().execute();
         carList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -187,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //new JSONTasks().execute();
+        new JSONTasks().execute();
         new GetCarsAsyncTask().execute();
     }
 
@@ -214,8 +208,6 @@ public class MainActivity extends AppCompatActivity {
                     if (sbuf.length() == 0) {
                         return null;
                     }
-
-                    Log.d("FETITA", String.valueOf(sbuf.length()));
 
                     result = sbuf.toString();
                 } else result = "error";

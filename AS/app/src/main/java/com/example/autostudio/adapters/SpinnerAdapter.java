@@ -1,18 +1,16 @@
-package com.example.autostudio;
+package com.example.autostudio.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import com.example.autostudio.classes.Car;
+import com.example.autostudio.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SpinnerAdapter extends BaseAdapter {
 

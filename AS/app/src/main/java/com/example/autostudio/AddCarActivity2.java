@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
+import com.example.autostudio.classes.Car;
+
 import java.util.Date;
 
 public class AddCarActivity2 extends AppCompatActivity {

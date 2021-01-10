@@ -1,10 +1,11 @@
-package com.example.autostudio;
+package com.example.autostudio.interfaces;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
-import androidx.room.Update;
+
+import com.example.autostudio.classes.Car;
 
 import java.util.List;
 

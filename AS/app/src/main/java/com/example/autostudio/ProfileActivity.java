@@ -25,11 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    User user;
-
     FirebaseDatabase usersDatabase;
     DatabaseReference usersReference;
-    private GoogleSignInClient gsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +63,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-//        if(user != null) {
-//            Glide.with(getApplicationContext()).load(user.getUserPhoto())
-//                    .centerCrop().circleCrop().into(picture);
-//            name.setText(user.getUserDisplayName());
-//            email.setText(user.getUserEmail());
-//        }
-
         Button settings = (Button) findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,15 +90,5 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
-
-//    private void signOut() {
-//        gsc.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-//                startActivity(loginIntent);
-//            }
-//        });
-//    }
     }
 }

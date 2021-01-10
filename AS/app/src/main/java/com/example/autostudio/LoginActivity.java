@@ -5,25 +5,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.autostudio.classes.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         gsc = GoogleSignIn.getClient(this, gso);
-        //pentru dev, sa te deconecteze
-        //gsc.signOut();
 
         usersDatabase = FirebaseDatabase.getInstance();
         usersReference = usersDatabase.getReference("autostudio").child("users");
@@ -128,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             Glide.with(getApplicationContext()).load(account.getPhotoUrl())
                     .centerCrop().circleCrop().into(userPic);
             userPic.setVisibility(View.VISIBLE);
-            welcomeLastSignedIn.setText("Welcome back," + "\n" + account.getDisplayName());
+            welcomeLastSignedIn.setText(getString(R.string.welcome) + "\n" + account.getDisplayName());
             welcomeLastSignedIn.setVisibility(View.VISIBLE);
         }
     }

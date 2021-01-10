@@ -7,14 +7,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.example.autostudio.classes.Car;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     EditText mechanic, gasStation;
     Spinner car;
-    Button add, delete;
+    Button add;
     DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Car> carsList;
     SharedPreferences preferences;
@@ -30,7 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
     public void checkPreferences() {
         if(preferences.contains("initialized")) {
             add.setVisibility(View.INVISIBLE);
-
             String mechanic = preferences.getString("MECHANIC", "");
             String gas = preferences.getString("GAS_STATION", "");
             int carIndex = preferences.getInt("CAR_INDEX", 0);
@@ -40,7 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
             this.car.setSelection(carIndex);
 
         } else {
-
             add.setVisibility(View.VISIBLE);
         }
     }
@@ -59,8 +57,6 @@ public class SettingsActivity extends AppCompatActivity {
         checkPreferences();
 
         carsList = new ArrayList<>();
-
-        String newMechanic;
 
         mechanic.addTextChangedListener(new TextWatcher() {
             @Override
