@@ -92,7 +92,7 @@
                         android:id="@+id/text_where1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gas"
+                        android:text="@string/gas"
 
                         android:fontFamily="@font/salvatore_bold"
                         android:textSize="16sp"
@@ -102,7 +102,7 @@
                         android:id="@+id/edit_where1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Petrol"
+                        android:hint="@string/petrol"
                         android:background="@drawable/edit_text_bg"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"

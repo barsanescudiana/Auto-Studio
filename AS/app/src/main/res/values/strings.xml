@@ -34,7 +34,6 @@
     <string name="model">Model</string>
     <string name="clio">Clio</string>
     <string name="fuel">Fuel</string>
-    <string name="petrol">Petrol</string>
     <string name="km_number">240000</string>
     <string name="km_t">KM</string>
     <string name="color">Color</string>
@@ -49,7 +48,6 @@
     <string name="rca_expiration_date">RCA expiration date</string>
     <string name="_01_01_2020">01/01/2020</string>
     <string name="itp_expiration_date">ITP expiration date</string>
-    <string name="_10_7">10.7</string>
     <string name="driver_s_name">Driver`s name</string>
     <string name="e_g_OMV">e.g. OMV</string>
     <string name="licence_expiration_date">Licence expiration date</string>
@@ -86,6 +84,12 @@
     <string name="expired">expired</string>
     <string name="days">\" d\"</string>
     <string name="welcome">Welcome back,</string>
+    <string name="_209k">209K</string>
+    <string name="_278">278</string>
+    <string name="_200_d">200 d</string>
+    <string name="_10_7">10.7</string>
+    <string name="gas">Gas</string>
+    <string name="petrol">Petrol</string>
     <string-array name="measurements">
         <item> hp </item>
         <item> kW </item>
