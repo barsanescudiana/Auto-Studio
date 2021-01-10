@@ -94,6 +94,13 @@ public class EventActivity extends AppCompatActivity {
                             case "ITP":
                             case "RCA":
                             case "Accident":
+                                if(eventSpinner.getSelectedItem().toString().equals("ITP")) {
+                                    databaseAutoStudio.getCarsDao().updateCarITPById(new Date(date.getText().toString()), carId);
+                                }
+
+                                if(eventSpinner.getSelectedItem().toString().equals("RCA")) {
+                                    databaseAutoStudio.getCarsDao().updateCarRCAById(new Date(date.getText().toString()), carId);
+                                }
                                 event = new Event(eventSpinner.getSelectedItem().toString(),
                                         eventName,
                                         new Date(date.getText().toString()),
