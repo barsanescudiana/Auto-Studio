@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         docs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent docsIntent = new Intent(getApplicationContext(), DocsActivity.class);
+                Intent docsIntent = new Intent(getApplicationContext(), ReportsActivity.class);
                 docsIntent.putExtra("User", user);
                 startActivity(docsIntent);
 

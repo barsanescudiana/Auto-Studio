@@ -14,6 +14,9 @@ public interface EventsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Event event);
 
+    @Query("Select * from events")
+    List<Event> getAll();
+
     @Query("Select * from events where carId=:carId")
     List<Event> getAll(int carId);
 

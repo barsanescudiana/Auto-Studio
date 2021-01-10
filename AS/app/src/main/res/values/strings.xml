@@ -39,7 +39,7 @@
     <string name="km_t">KM</string>
     <string name="color">Color</string>
     <string name="next">Next</string>
-    <string name="my_docs">MY DOCS</string>
+    <string name="my_reports">MY REPORTS</string>
     <string name="engine_capacity">Engine capacity</string>
     <string name="cm">cm</string>
     <string name="_1400">1400</string>
@@ -72,6 +72,8 @@
     <string name="your_preferred_mechanic">Your preferred mechanic</string>
     <string name="gas_station">Gas station</string>
     <string name="logout">Logout</string>
+    <string name="cars_report">Cars report</string>
+    <string name="events_report">Events report</string>
     <string-array name="measurements">
         <item> hp </item>
         <item> kW </item>
