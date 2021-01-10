@@ -1,4 +1,4 @@
-package com.example.autostudio.classes;
+package com.example.autostudio.interfaces;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

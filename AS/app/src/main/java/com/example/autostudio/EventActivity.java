@@ -40,7 +40,7 @@ public class EventActivity extends AppCompatActivity {
 
         final Spinner actionSpinner = findViewById(R.id.action_spinner);
 
-        EditText mechanic = findViewById(R.id.mechanic_edit);
+        final EditText mechanic = findViewById(R.id.mechanic_edit);
         if(mechanic.getVisibility() == View.VISIBLE) {
             String myMechanic = preferences.getString("MECHANIC", "");
             mechanic.setText(myMechanic);
@@ -74,37 +74,50 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (carId != -1) {
+
                     TextView date = findViewById(R.id.date_input);
                     EditText costText = findViewById(R.id.value_edit);
                     Double cost;
                     Spinner costCurrency = findViewById(R.id.value_spinner);
-                    if (costCurrency.getSelectedItem().equals("EUR")) {
-                        cost = 4.8 * Double.parseDouble(costText.getText().toString());
+
+                    if(date.getText().toString().isEmpty() || date.getText().toString().trim().isEmpty()) {
+                        date.setError("Date not added!");
+                    } else if (costText.getText().toString().isEmpty() || costText.getText().toString().trim().isEmpty()){
+                        costText.setError("Cost not added!");
                     } else {
-                        cost = Double.parseDouble(costText.getText().toString());
+
+                        if (costCurrency.getSelectedItem().equals("EUR")) {
+                            cost = 4.8 * Double.parseDouble(costText.getText().toString());
+                        } else {
+                            cost = Double.parseDouble(costText.getText().toString());
+                        }
+                        switch (eventSpinner.getSelectedItem().toString()) {
+                            case "ITP":
+                            case "RCA":
+                            case "Accident":
+                                event = new Event(eventSpinner.getSelectedItem().toString(),
+                                        eventName,
+                                        new Date(date.getText().toString()),
+                                        "",
+                                        cost,
+                                        carId);
+                                break;
+                            case "Service visit":
+                                if(mechanic.getText().toString().isEmpty() || mechanic.getText().toString().trim().isEmpty()) {
+                                    mechanic.setError("Mechanic not added!");
+                                } else {
+                                    EditText mechanic = findViewById(R.id.mechanic_edit);
+                                    event = new Event(eventSpinner.getSelectedItem().toString(),
+                                            actionSpinner.getSelectedItem().toString(),
+                                            new Date(date.getText().toString()),
+                                            "Mechanic: " + mechanic.getText().toString(),
+                                            cost,
+                                            carId);
+                                }
+                                break;
+                        }
+                        databaseAutoStudio.getEventsDao().insert(event);
                     }
-                    switch (eventSpinner.getSelectedItem().toString()) {
-                        case "ITP":
-                        case "RCA":
-                        case "Accident":
-                            event = new Event(eventSpinner.getSelectedItem().toString(),
-                                    eventName,
-                                    new Date(date.getText().toString()),
-                                    "",
-                                    cost,
-                                    carId);
-                            break;
-                        case "Service visit":
-                            EditText mechanic = findViewById(R.id.mechanic_edit);
-                            event = new Event(eventSpinner.getSelectedItem().toString(),
-                                    actionSpinner.getSelectedItem().toString(),
-                                    new Date(date.getText().toString()),
-                                    "Mechanic: " + mechanic.getText().toString(),
-                                    cost,
-                                    carId);
-                            break;
-                    }
-                    databaseAutoStudio.getEventsDao().insert(event);
                 }
 
                 setResult(RESULT_OK);

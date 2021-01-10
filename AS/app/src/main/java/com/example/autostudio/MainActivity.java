@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.autostudio.adapters.CarAdapter;
 import com.example.autostudio.classes.Car;
+import com.example.autostudio.classes.User;
 import com.example.autostudio.fragments.NewTripFragment;
 import com.example.autostudio.fragments.RefillFragment;
 

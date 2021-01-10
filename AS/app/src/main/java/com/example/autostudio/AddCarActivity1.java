@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.autostudio.classes.Car;
+import com.example.autostudio.classes.User;
 
 public class AddCarActivity1 extends AppCompatActivity {
 

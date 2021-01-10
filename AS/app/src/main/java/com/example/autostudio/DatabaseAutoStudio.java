@@ -8,10 +8,10 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.example.autostudio.classes.Car;
-import com.example.autostudio.classes.CarsDao;
+import com.example.autostudio.interfaces.CarsDao;
 import com.example.autostudio.classes.DateConverter;
 import com.example.autostudio.classes.Event;
-import com.example.autostudio.classes.EventsDao;
+import com.example.autostudio.interfaces.EventsDao;
 
 @Database(entities = {Car.class, Event.class}, version = 13, exportSchema = false)
 @TypeConverters({DateConverter.class})
