@@ -2,21 +2,21 @@ package com.example.autostudio;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.autostudio.adapters.EventAdapter;
+import com.example.autostudio.classes.Car;
+import com.example.autostudio.classes.Event;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class CarActivity extends AppCompatActivity {
@@ -101,12 +101,10 @@ public class CarActivity extends AppCompatActivity {
 
         long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
         if(daysDiff > 0) {
-            toITP.setText(String.valueOf(daysDiff) + " d");
+            toITP.setText(String.valueOf(daysDiff) + getString(R.string.days));
         } else {
             toITP.setText(R.string.expired);
         }
-
-
 
         range.setText(String.valueOf((testCar.getTankCapacity() / testCar.getAvgConsumption()) * 100 - 50));
 

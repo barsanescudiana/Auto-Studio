@@ -1,32 +1,21 @@
-package com.example.autostudio;
+package com.example.autostudio.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.autostudio.classes.Event;
+import com.example.autostudio.R;
 
 public class EventAdapter extends BaseAdapter {
 

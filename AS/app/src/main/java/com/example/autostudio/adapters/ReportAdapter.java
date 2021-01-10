@@ -1,4 +1,4 @@
-package com.example.autostudio;
+package com.example.autostudio.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.autostudio.R;
 
 import java.util.ArrayList;
 

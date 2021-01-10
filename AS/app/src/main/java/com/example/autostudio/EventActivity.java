@@ -5,24 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.autostudio.classes.Event;
+
 import java.util.Date;
-import java.util.UUID;
 
 public class EventActivity extends AppCompatActivity {
 
-    ArrayList<String> events, actions;
     DatabaseAutoStudio databaseAutoStudio;
     Button add;
     long carId;
@@ -41,38 +36,9 @@ public class EventActivity extends AppCompatActivity {
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
         carId = getIntent().getLongExtra("CAR_ID", -1);
 
-        Log.e("ID MASINA", String.valueOf(carId));
-
-        events = new ArrayList<>();
-
-        events.add("Accident");
-        events.add("ITP");
-        events.add("RCA");
-        events.add("Service visit");
-
-        actions = new ArrayList<>();
-
-        actions.add("Body");
-        actions.add("Chassis");
-        actions.add("Drive transmission & steering");
-        actions.add("Electrical");
-        actions.add("Engine");
-        actions.add("Suspension & break");
-
         final Spinner eventSpinner = findViewById(R.id.event_spinner);
-        ArrayAdapter<String> eventAdapter = new ArrayAdapter<>(this,
-                R.layout.event_spinner_item,
-                events);
-        eventAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
-        eventSpinner.setAdapter(eventAdapter);
 
         final Spinner actionSpinner = findViewById(R.id.action_spinner);
-        ArrayAdapter<String> actionAdapter = new ArrayAdapter<>(this,
-                R.layout.event_spinner_item,
-                actions);
-        actionAdapter.setDropDownViewResource(R.layout.event_spinner_dropdown_item);
-        actionSpinner.setAdapter(actionAdapter);
-
 
         EditText mechanic = findViewById(R.id.mechanic_edit);
         if(mechanic.getVisibility() == View.VISIBLE) {
@@ -138,10 +104,7 @@ public class EventActivity extends AppCompatActivity {
                                     carId);
                             break;
                     }
-
-                    Log.e("EVENT", event.toString());
                     databaseAutoStudio.getEventsDao().insert(event);
-                    Log.e("EVENT DUPA INSERT", event.toString());
                 }
 
                 setResult(RESULT_OK);

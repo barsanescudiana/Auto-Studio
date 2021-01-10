@@ -1,13 +1,11 @@
-package com.example.autostudio;
+package com.example.autostudio.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.autostudio.classes.Car;
+import com.example.autostudio.R;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class CarAdapter extends BaseAdapter {
 
@@ -27,19 +25,6 @@ public class CarAdapter extends BaseAdapter {
     private final int resource;
     private final ArrayList<Car> carList;
     private final LayoutInflater layoutInflater;
-
-    public final Date current = new Date();
-
-    private Calendar toCalendar(long timestamp)
-    {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timestamp);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar;
-    }
 
     public CarAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Car> carList, LayoutInflater layoutInflater) {
         this.context = context;
@@ -55,7 +40,6 @@ public class CarAdapter extends BaseAdapter {
 
         View view = layoutInflater.inflate(resource, parent, false);
         Car testCar = carList.get(position);
-
 
         if(testCar != null) {
 

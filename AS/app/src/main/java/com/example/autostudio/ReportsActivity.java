@@ -3,15 +3,17 @@ package com.example.autostudio;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.autostudio.adapters.ReportAdapter;
+import com.example.autostudio.classes.Car;
+import com.example.autostudio.classes.Event;
 
 import java.util.ArrayList;
 
@@ -78,8 +80,8 @@ public class ReportsActivity extends AppCompatActivity {
                 findViewById(R.id.frame_layout).setVisibility(View.VISIBLE);
                 reportList.setVisibility(View.GONE);
 
-                where1.setText("Action");
-                where2.setText("Cost");
+                where1.setText(R.string.action);
+                where2.setText(R.string.cost);
 
                 editWhere1.setHint("Accident");
                 editWhere1.setText("");
