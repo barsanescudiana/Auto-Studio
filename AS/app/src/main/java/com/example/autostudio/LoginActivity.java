@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private final int RC_SIGN_IN = 0;
     private SignInButton signInButton;
-    private GoogleSignInClient gsc;
+    private static GoogleSignInClient gsc;
     TextView welcomeLastSignedIn;
 
     FirebaseDatabase usersDatabase;
@@ -146,5 +148,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }, SPLASH_TIME_OUT);
+    }
+
+    public static void signOut() {
+        gsc.signOut();
     }
 }

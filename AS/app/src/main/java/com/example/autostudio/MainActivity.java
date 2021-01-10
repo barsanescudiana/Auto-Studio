@@ -30,13 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public Date itp = new Date(2021, 10, 27);
     public Date rca = new Date(2021, 8, 27);
 
-//    public Car testCar = new Car("Renault", "Clio", "Petrol", 102678, "Blue",
-//            1400, 95, 10.7, itp, rca);
-//    public Car testCar2 = new Car("Renault", "Clio", "Petrol", 100678, "White",
-//            1400, 95, 10.7, itp, rca);
-//    public Car testCar3 = new Car("Renault", "Clio", "Petrol", 100678, "Purple",
-//            1400, 95, 10.7, itp, rca);
-
     public DatabaseAutoStudio databaseAutoStudio;
 
     @Override
@@ -48,20 +41,16 @@ public class MainActivity extends AppCompatActivity {
 
         databaseAutoStudio = DatabaseAutoStudio.getInstance(getApplicationContext());
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
+
         final User user = (User) intent.getSerializableExtra("User");
         userPic = (ImageView) findViewById(R.id.userPic);
-
-        userPic.setVisibility(View.VISIBLE);
 
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
                     .centerCrop().circleCrop().into(userPic);
             Log.d("User", user.toString());
         }
-//        carArrayList.add(testCar);
-//        carArrayList.add(testCar2);
-//        carArrayList.add(testCar3);
 
         Button newTrip = (Button) findViewById(R.id.newTrip);
         Button refill = (Button) findViewById(R.id.refill);
@@ -84,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         userPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putSerializable("USER", user);
+                bundle.putSerializable("USER_EMAIL", user.getUserEmail());
                 Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
                 profileIntent.putExtras(bundle);
                 startActivity(profileIntent);
