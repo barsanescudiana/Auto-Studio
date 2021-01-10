@@ -19,6 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView userPic;
+    private Button weather;
 
     private ListView carList;
 
@@ -60,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Button refill = findViewById(R.id.refill);
         Button docs = findViewById(R.id.docs);
         Button addCar = findViewById(R.id.btn_add);
+        weather = findViewById(R.id.docs2);
 
         //toolbar
         Button settings = findViewById(R.id.btn_settings);
@@ -136,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         final CarAdapter adapter = new CarAdapter(getApplicationContext(), R.layout.car_list_item, carArrayList, getLayoutInflater());
         carList.setAdapter(adapter);
 
+        new JSONTasks().execute();
         carList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -178,89 +191,63 @@ public class MainActivity extends AppCompatActivity {
         new GetCarsAsyncTask().execute();
     }
 
-//    public class JSONTasks extends AsyncTask<String, String, String> {
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            Log.e("PRE", "On pre execute!!!!1");
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            Log.e("BG", "do in backgroound!!!");
-//
-//            String result = null;
-//            try {
-//                URL url = new URL("https://jsonkeeper.com/b/PHBW");
-//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//                conn.setRequestMethod("GET");
-//                conn.connect();
-//
-//                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
-//                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                    StringBuffer stringBuffer = new StringBuffer();
-//                    String temp;
-//
-//                    while ((temp = bufferedReader.readLine()) != null) {
-//                        stringBuffer.append(temp);
-//                    }
-//
-//                    if(stringBuffer.length() == 0) {
-//                        return null;
-//                    }
-//
-//                    result = stringBuffer.toString();
-//                } else {
-//                    result = "error";
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            return result;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            super.equals(s);
-//
-//            JSONObject object = null;
-//            try {
-//                object = new JSONObject(s);
-//                JSONArray array = object.getJSONArray("data");
-//
-//                for(int i = 0; i<array.length(); i++) {
-//                    JSONObject jsonObject = array.getJSONObject(i);
-//                    String brand = jsonObject.getString("brand");
-//                    String model = jsonObject.getString("model");
-//                    String fuel = jsonObject.getString("fuel");
-//                    String tank = jsonObject.getString("tank");
-//                    String color = jsonObject.getString("color");
-//                    double km = jsonObject.getDouble("km");
-//                    double avg = jsonObject.getDouble("avg");
-//                    int engineCapacity = jsonObject.getInt("capacity");
-//                    int engineOutput = jsonObject.getInt("output");
-//                    String rca = jsonObject.getString("rca");
-//                    String itp = jsonObject.getString("itp");
-//
-//                    Car car = new Car(brand, model, fuel, km, color, engineCapacity,
-//                            engineOutput, avg, new Date(rca), new Date(itp));
-//
-//                    carArrayList.add(car);
-//                }
-//
-//                Log.e("SUCCES", "Succes getting data!");
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//            CarAdapter adapter = new CarAdapter(MainActivity.this, R.layout.car_list_item, carArrayList, getLayoutInflater());
-//            carList.setAdapter(adapter);
-//        }
-//   }
+    public class JSONTasks extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+            String result = null;
+            try {
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat=44.4268&lon=26.1025&units=metric&appid=6213eee9274adc0299c1a5df35a3611d");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.connect();
+
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    InputStreamReader isr = new InputStreamReader(conn.getInputStream());
+                    BufferedReader br = new BufferedReader(isr);
+                    StringBuffer sbuf = new StringBuffer();
+                    String temp;
+
+                    while ((temp = br.readLine()) != null) {
+                        sbuf.append(temp);
+                    }
+
+                    if (sbuf.length() == 0) {
+                        return null;
+                    }
+
+                    Log.d("FETITA", String.valueOf(sbuf.length()));
+
+                    result = sbuf.toString();
+                } else result = "error";
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            JSONObject jsonObject = null;
+
+            try {
+                jsonObject = new JSONObject(s);
+
+                JSONObject main = (JSONObject) jsonObject.get("main");
+
+                if (main.getDouble("temp") >= 4) {
+                    weather.setBackgroundResource(R.drawable.weather_summer);
+                } else {
+                    weather.setBackgroundResource(R.drawable.weather_winter);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     private class GetCarsAsyncTask extends AsyncTask<Void, Void, List<Car>> {
 

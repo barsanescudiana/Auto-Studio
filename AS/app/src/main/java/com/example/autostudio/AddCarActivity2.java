@@ -31,6 +31,9 @@ public class AddCarActivity2 extends AppCompatActivity {
         itp = findViewById(R.id.itpDate);
         tank = findViewById(R.id.tank_edit);
 
+        addCarNav = findViewById(R.id.btn_add);
+        addCarNav.setVisibility(View.GONE);
+
         save = findViewById(R.id.save);
 
         Bundle bundle = getIntent().getExtras();
@@ -49,6 +52,7 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
                 Log.e("newCar object: ", newCar.toString());
                 databaseAutoStudio.getCarsDao().insertCar(newCar);
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
