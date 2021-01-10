@@ -31,4 +31,7 @@ public interface EventsDao {
 
     @Query("Delete from events where event_id=:eventId")
     void deleteEventById(long eventId);
+
+    @Query("Select * from events where name=:event_name and cost>=:cost")
+    List<Event> getEventsByNameAndCost(String event_name, Double cost);
 }

@@ -28,4 +28,7 @@ public interface CarsDao {
 
     @Query("Delete from cars where car_id = :carId")
     void deleteEventById(long carId);
+
+    @Query("Select * from cars where fuel=:fuel and km>=:km")
+    List<Car> getCarsByFuelAndKm(String fuel, double km);
 }

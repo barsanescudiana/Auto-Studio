@@ -1,5 +1,6 @@
 package com.example.autostudio;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -28,6 +29,8 @@ public class CarActivity extends AppCompatActivity {
     DatabaseAutoStudio databaseAutoStudio;
     ArrayList<Event> eventsList;
 
+    public static final int REQUEST_CODE = 100;
+
     private Calendar toCalendar(long timestamp)
     {
         Calendar calendar = Calendar.getInstance();
@@ -50,16 +53,8 @@ public class CarActivity extends AppCompatActivity {
         eventsList = new ArrayList<>();
         eventsListView = findViewById(R.id.eventListView);
 
-//        Date testDate = new Date("10/04/2019");
-//        Event event1 = new Event("Changed break pads", testDate, 1);
-//        Event event2 = new Event("Revision", testDate, 1);
-//        Event event3 = new Event("Changed seasonal tires", testDate, 1);
-//
-//        eventsList.add(event1);
-//        eventsList.add(event2);
-//        eventsList.add(event3);
-
         databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
+
         eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId());
 
         EventAdapter eventsAdapter = new EventAdapter(CarActivity.this, R.layout.event_list_item, eventsList, getLayoutInflater());
@@ -78,10 +73,8 @@ public class CarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent eventIntent = new Intent(getApplicationContext(), EventActivity.class);
-                Log.e("ID MASINA", String.valueOf(testCar.getCarId()));
-
                 eventIntent.putExtra("CAR_ID", testCar.getCarId());
-                startActivity(eventIntent);
+                startActivityForResult(eventIntent, REQUEST_CODE);
             }
         });
 
@@ -104,11 +97,6 @@ public class CarActivity extends AppCompatActivity {
 
         long msDiff = Calendar.getInstance().getTimeInMillis() - date.getTimeInMillis();
         long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
-
-        Log.e("DAYS DIFF", String.valueOf(daysDiff) );
-//
-//        Date today = new Date();
-//        long diff = today.getTime() - testCar.getExpDateITP().getTime();
 
         toITP.setText(String.valueOf(daysDiff) + " d");
 
@@ -161,5 +149,20 @@ public class CarActivity extends AppCompatActivity {
                 startActivity(dashboardIntent);
             }
         });
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            eventsList.clear();
+
+            eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId());
+            EventAdapter eventsAdapter = new EventAdapter(CarActivity.this, R.layout.event_list_item, eventsList, getLayoutInflater());
+            eventsListView.setAdapter(eventsAdapter);
+        }
     }
 }

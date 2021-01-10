@@ -143,6 +143,9 @@ public class EventActivity extends AppCompatActivity {
                     databaseAutoStudio.getEventsDao().insert(event);
                     Log.e("EVENT DUPA INSERT", event.toString());
                 }
+
+                setResult(RESULT_OK);
+                finish();
             }
         });
 

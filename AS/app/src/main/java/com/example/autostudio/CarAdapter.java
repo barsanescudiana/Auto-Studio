@@ -70,7 +70,7 @@ public class CarAdapter extends BaseAdapter {
 
             long diff = System.currentTimeMillis() - testCar.getExpDateRCA().getTime();
 
-            if (diff < 0) {
+            if (diff > 0) {
                 Button btnRCA = view.findViewById(R.id.btn_RCA);
                 btnRCA.setBackgroundResource(R.drawable.btn_green);
 
@@ -81,7 +81,7 @@ public class CarAdapter extends BaseAdapter {
 
             diff = System.currentTimeMillis() - testCar.getExpDateITP().getTime();
 
-            if(diff < 0) {
+            if(diff > 0) {
                 Button btnITP = view.findViewById(R.id.btn_ITP);
                 btnITP.setBackgroundResource(R.drawable.btn_green);
             }  else {
@@ -140,11 +140,5 @@ public class CarAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
     }
 }

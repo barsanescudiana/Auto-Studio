@@ -1,5 +1,6 @@
 package com.example.autostudio;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -10,8 +11,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -137,14 +140,36 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Car selectedCar = carArrayList.get(position);
+                final Car carToDelete = carArrayList.get(position);
 
-                databaseAutoStudio.getEventsDao().deleteAll(selectedCar.getCarId());
-                databaseAutoStudio.getCarsDao().deleteEventById(selectedCar.getCarId());
+                final CarAdapter carAdapter = (CarAdapter) carList.getAdapter();
 
-                carArrayList.remove(position);
-                carArrayList = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
-                adapter.notifyDataSetChanged();
+                final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).
+                        setTitle("Deleting a car").
+                        setMessage("Dou you want to delete this car?").
+                        setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "Nothing changed", Toast.LENGTH_LONG).show();
+                                dialog.cancel();
+                            }
+                        }).
+                        setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                carArrayList.remove(carToDelete);
+                                carAdapter.notifyDataSetChanged();
+
+                                databaseAutoStudio.getEventsDao().deleteAllByCarId(carToDelete.getCarId());
+                                databaseAutoStudio.getCarsDao().deleteEventById(carToDelete.getCarId());
+
+                                Toast.makeText(getApplicationContext(), "Successfully deleted", Toast.LENGTH_LONG).show();
+
+                            }
+                }).create();
+
+                dialog.show();
+
                 return true;
             }
         });

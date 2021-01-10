@@ -48,7 +48,7 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
                 newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
                 Log.e("newCar object: ", newCar.toString());
-                databaseAutoStudio.getCarsDao().insert(newCar);
+                databaseAutoStudio.getCarsDao().insertCar(newCar);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }

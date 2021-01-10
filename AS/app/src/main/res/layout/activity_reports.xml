@@ -55,15 +55,120 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_report"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/top_bottom_nav"
-        app:layout_constraintEnd_toEndOf="@+id/top_bottom_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+        <LinearLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout5"
+            >
+            <TextView
+                android:id="@+id/query_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/salvatore_bold"
+                android:textSize="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/query_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_where1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gas"
+
+                        android:fontFamily="@font/salvatore_bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"/>
+
+                    <EditText
+                        android:id="@+id/edit_where1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Petrol"
+                        android:background="@drawable/edit_text_bg"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:fontFamily="@font/salvatore_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_where2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/km_t"
+
+                        android:fontFamily="@font/salvatore_bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"/>
+
+                    <EditText
+                        android:id="@+id/edit_where2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/km_eg"
+
+                        android:background="@drawable/edit_text_bg"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+
+                        android:fontFamily="@font/salvatore_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/query_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/salvatore_bold"
+                    android:text="@string/show"
+                    android:background="@drawable/gradient_button_fill"
+                    android:paddingBottom="20dp"
+                    android:textAllCaps="false"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/report_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_title"
+                android:fontFamily="@font/salvatore_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
+            <ListView
+                android:id="@+id/report_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
 
     <include
         android:id="@+id/top_bottom_nav"
