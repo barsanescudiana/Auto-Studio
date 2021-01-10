@@ -7,6 +7,7 @@ import androidx.room.Transaction;
 
 import com.example.autostudio.classes.Car;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -15,9 +16,6 @@ public interface CarsDao {
     @Transaction
     @Insert
     long insertCar(Car car);
-
-//    @Insert
-//    void insertEvents(List<Event> events);
 
     @Query("Select * from cars")
     List<Car> getAll();
@@ -30,6 +28,12 @@ public interface CarsDao {
 
     @Query("Update cars set tankCapacity=:tankCapacity where car_id=:carId")
     void updateCarTankCapacityById(double tankCapacity, long carId);
+
+    @Query("Update cars set expDateRCA=:expDateRCA where car_id=:carId")
+    void updateCarRCAById(Date expDateRCA, long carId);
+
+    @Query("Update cars set expDateITP=:expDateITP where car_id=:carId")
+    void updateCarITPById(Date expDateITP, long carId);
 
     @Query("Delete from cars")
     void deleteAll();
