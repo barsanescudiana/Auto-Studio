@@ -85,7 +85,6 @@ public class EventActivity extends AppCompatActivity {
                     } else if (costText.getText().toString().isEmpty() || costText.getText().toString().trim().isEmpty()){
                         costText.setError("Cost not added!");
                     } else {
-
                         if (costCurrency.getSelectedItem().equals("EUR")) {
                             cost = 4.8 * Double.parseDouble(costText.getText().toString());
                         } else {

@@ -95,7 +95,7 @@
                 android:fontFamily="@font/salvatore_regular"
                 android:hint="@string/e_g_OMV"
                 android:textAlignment="center"
-                android:inputType="number"
+                android:inputType="text"
                 android:textSize="18sp" />
 
         </LinearLayout>
