@@ -46,39 +46,29 @@ public class AddCarActivity2 extends AppCompatActivity {
 
                 if (capacity.getText().length() == 0)
                     capacity.setError("Capacity is required!");
-                else newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
-
-                if (output.getText().length() == 0)
+                else if (output.getText().length() == 0)
                     output.setError("Output is required!");
-                else newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
-
-                if (avg.getText().length() == 0)
+                else if (avg.getText().length() == 0)
                     avg.setError("Average is required!");
-                else newCar.setAvgConsumption(Double.parseDouble(avg.getText().toString()));
-
-                if (rca.getText().length() == 0)
+                else if (rca.getText().length() == 0)
                     rca.setError("RCA is required!");
-                else newCar.setExpDateRCA(new Date(rca.getText().toString()));
-
-                if (itp.getText().length() == 0)
+                else if (itp.getText().length() == 0)
                     itp.setError("ITP is required!");
-                else newCar.setExpDateITP(new Date(itp.getText().toString()));
-
-                if (tank.getText().length() == 0)
+                else if (tank.getText().length() == 0)
                     tank.setError("Tank Capacity is required!");
-                else newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
+                else {
+                    newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
+                    newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
+                    newCar.setAvgConsumption(Double.parseDouble(avg.getText().toString()));
+                    newCar.setExpDateRCA(new Date(rca.getText().toString()));
+                    newCar.setExpDateITP(new Date(itp.getText().toString()));
+                    newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
 
-//                newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
-//                newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
-//                newCar.setAvgConsumption(Double.parseDouble(avg.getText().toString()));
-//                newCar.setExpDateRCA(new Date(rca.getText().toString()));
-//                newCar.setExpDateITP(new Date(itp.getText().toString()));
-//                newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
-//                Log.e("newCar object: ", newCar.toString());
-                databaseAutoStudio.getCarsDao().insertCar(newCar);
+                    databaseAutoStudio.getCarsDao().insertCar(newCar);
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
