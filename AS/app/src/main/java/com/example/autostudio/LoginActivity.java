@@ -91,15 +91,14 @@ public class LoginActivity extends AppCompatActivity {
             final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             updateUI(account);
 
-            Query query = usersReference.orderByChild("userId");
+            Query query = usersReference.orderByChild("userEmail").equalTo(account.getEmail());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        if (!ds.getValue(User.class).getUserId().equals(account.getId()))
-                            usersReference.child(usersReference.push().getKey()).setValue(new User(account.getId(), account.getDisplayName(),
-                                    account.getEmail(), account.getPhotoUrl().toString()));
+                    if (!snapshot.exists()) {
+                        usersReference.child(usersReference.push().getKey()).setValue(new User(account.getId(), account.getDisplayName(),
+                                account.getEmail(), account.getPhotoUrl().toString()));
                     }
                 }
 
