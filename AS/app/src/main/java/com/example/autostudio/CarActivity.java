@@ -97,14 +97,15 @@ public class CarActivity extends AppCompatActivity {
 
         Calendar date = toCalendar(testCar.getExpDateITP().getTime());
 
-        long msDiff = Calendar.getInstance().getTimeInMillis() - date.getTimeInMillis();
+        long msDiff = date.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+
         long daysDiff = TimeUnit.MILLISECONDS.toDays(msDiff);
+        if(daysDiff > 0) {
+            toITP.setText(String.valueOf(daysDiff) + " d");
+        } else {
+            toITP.setText(R.string.expired);
+        }
 
-        toITP.setText(String.valueOf(daysDiff) + " d");
-
-        //pt fiecare trip, din tank capacity trb sa scadem (triprange * avg) / 100
-        //10.7 L .... 100km
-        //x ...... 50km
 
 
         range.setText(String.valueOf((testCar.getTankCapacity() / testCar.getAvgConsumption()) * 100 - 50));

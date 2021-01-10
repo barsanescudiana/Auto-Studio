@@ -63,8 +63,8 @@ public class Car implements Serializable {
         this.engineCapacity = engineCapacity;
         this.engineOutput = engineOutput;
         this.avgConsumption = avgConsumption;
-        this.expDateRCA = new Date(expDateRCA.getYear() - 1900, expDateRCA.getMonth(), expDateRCA.getDay());
-        this.expDateITP = new Date(expDateRCA.getYear() - 1900, expDateITP.getMonth(), expDateITP.getDay());
+        this.expDateRCA = new Date(expDateRCA.toString());
+        this.expDateITP = new Date(expDateITP.toString());
         this.tankCapacity = tankCapacity;
     }
 

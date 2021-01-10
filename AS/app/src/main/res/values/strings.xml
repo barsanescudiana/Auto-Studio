@@ -84,6 +84,7 @@
     <string name="report_title">Report title</string>
     <string name="show">Show</string>
     <string name="car">Car</string>
+    <string name="expired">expired</string>
     <string-array name="measurements">
         <item> hp </item>
         <item> kW </item>
