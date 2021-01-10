@@ -1,5 +1,6 @@
 package com.example.autostudio;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +39,9 @@ public class LoginActivity extends AppCompatActivity {
     private SignInButton signInButton;
     private GoogleSignInClient gsc;
     TextView welcomeLastSignedIn;
+
+    FirebaseDatabase usersDatabase;
+    DatabaseReference usersReference;
 
     ImageView userPic;
 
@@ -47,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         gsc = GoogleSignIn.getClient(this, gso);
         //pentru dev, sa te deconecteze
         //gsc.signOut();
+
+        usersDatabase = FirebaseDatabase.getInstance();
+        usersReference = usersDatabase.getReference("autostudio").child("users");
 
         signInButton = findViewById(R.id.sign_in_btn);
         signInButton.setSize(SignInButton.SIZE_WIDE);
@@ -74,8 +88,27 @@ public class LoginActivity extends AppCompatActivity {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             updateUI(account);
+
+            Query query = usersReference.orderByChild("userId");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        if (!ds.getValue(User.class).getUserId().equals(account.getId()))
+                            usersReference.child(usersReference.push().getKey()).setValue(new User(account.getId(), account.getDisplayName(),
+                                    account.getEmail(), account.getPhotoUrl().toString()));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         } catch (ApiException e) {
             Log.w("Google SignIn", "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
@@ -85,9 +118,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
         if (account != null) {
             updateUI(account);
+
             signInButton.setVisibility(View.INVISIBLE);
             Glide.with(getApplicationContext()).load(account.getPhotoUrl())
                     .centerCrop().circleCrop().into(userPic);
@@ -103,9 +138,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (account != null) {
-                    User user = new User(account.getId(), account.getDisplayName(),
+                    final User user = new User(account.getId(), account.getDisplayName(),
                             account.getEmail(), account.getPhotoUrl().toString());
-
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("User", user);
