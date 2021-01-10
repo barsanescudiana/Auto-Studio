@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public interface CarsDao {
 
     @Query("Select * from cars where car_id=:carId")
     Car getCarById(long carId);
+
+    @Query("Update cars set km=:km where car_id=:carId")
+    void updateCarKmById(double km, long carId);
+
+    @Query("Update cars set tankCapacity=:tankCapacity where car_id=:carId")
+    void updateCarTankCapacityById(double tankCapacity, long carId);
 
     @Query("Delete from cars")
     void deleteAll();
