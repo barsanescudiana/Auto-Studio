@@ -7,13 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class DocsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ReportsActivity extends AppCompatActivity {
+
+    DatabaseAutoStudio databaseAutoStudio;
+    ArrayList<Car> cars;
+    ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_docs);
+        setContentView(R.layout.activity_reports);
 
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
+
+        cars = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
+        events = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll();
+
+        //toolbar
         Button settings = (Button) findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override

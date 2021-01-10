@@ -16,7 +16,7 @@
         <activity android:name=".EventActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AddCarActivity2" />
-        <activity android:name=".DocsActivity" />
+        <activity android:name=".ReportsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
