@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CarActivity extends AppCompatActivity {
 
-    Car testCar;
+    Car testCar, recievedCar;
     TextView textName, textDetails, totalKM, range, toITP, avg;
     ImageView color;
     Button event;
@@ -48,12 +48,14 @@ public class CarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car);
 
         Bundle bundle = getIntent().getExtras();
-        testCar = (Car) bundle.getSerializable("SELECTED");
+        recievedCar = (Car) bundle.getSerializable("SELECTED");
+
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
+
+        testCar = databaseAutoStudio.getCarsDao().getCarById(recievedCar.getCarId());
 
         eventsList = new ArrayList<>();
         eventsListView = findViewById(R.id.eventListView);
-
-        databaseAutoStudio = DatabaseAutoStudio.getInstance(this);
 
         eventsList = (ArrayList<Event>) databaseAutoStudio.getEventsDao().getAll(testCar.getCarId());
 
@@ -101,8 +103,9 @@ public class CarActivity extends AppCompatActivity {
         toITP.setText(String.valueOf(daysDiff) + " d");
 
         //pt fiecare trip, din tank capacity trb sa scadem (triprange * avg) / 100
-        //10.7 .... 100km
+        //10.7 L .... 100km
         //x ...... 50km
+
 
         range.setText(String.valueOf((testCar.getTankCapacity() / testCar.getAvgConsumption()) * 100 - 50));
 

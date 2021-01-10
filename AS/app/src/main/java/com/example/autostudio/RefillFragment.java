@@ -35,6 +35,7 @@ public class RefillFragment extends Fragment {
 
     private TextView close;
     private Button done;
+    private EditText liters;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -82,6 +83,7 @@ public class RefillFragment extends Fragment {
 
         close = view.findViewById(R.id.close);
         car = view.findViewById(R.id.refill_car_spinner);
+        liters = (EditText) view.findViewById(R.id.refill_liters);
 
         ArrayList<Car> cars = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
         SpinnerAdapter adapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_item, cars, getLayoutInflater());
@@ -101,7 +103,13 @@ public class RefillFragment extends Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Car selected = (Car) car.getSelectedItem();
+                Double l = selected.getTankCapacity() + Double.parseDouble(liters.getText().toString());
+
+                databaseAutoStudio.getCarsDao().updateCarTankCapacityById(l, selected.getCarId());
+
+                assert getFragmentManager() != null;
+                getFragmentManager().beginTransaction().remove(RefillFragment.this).commit();
             }
         });
 

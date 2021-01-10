@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ public class NewTripFragment extends DialogFragment {
     private TextView close;
     private Spinner car;
     DatabaseAutoStudio databaseAutoStudio;
+
+    EditText kilometers;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
