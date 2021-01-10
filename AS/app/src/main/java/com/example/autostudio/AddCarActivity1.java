@@ -39,16 +39,16 @@ public class AddCarActivity1 extends AppCompatActivity {
 
         Intent intent = getIntent();
         final User user = (User) intent.getSerializableExtra("User");
-        userPic = (ImageView) findViewById(R.id.userPic);
+        userPic = findViewById(R.id.userPic);
 
         if (user != null) {
             Glide.with(getApplicationContext()).load(user.getUserPhoto())
                     .centerCrop().circleCrop().into(userPic);
         }
 
-        addCarNav = (Button) findViewById(R.id.btn_add);
+        addCarNav = findViewById(R.id.btn_add);
         addCarNav.setVisibility(View.GONE);
-        toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar = findViewById(R.id.toolbar2);
         toolbar.setTitle(R.string.new_car);
 
         brand = findViewById(R.id.brand_edit);
@@ -69,7 +69,7 @@ public class AddCarActivity1 extends AppCompatActivity {
 
         next = findViewById(R.id.next);
 
-        Button settings = (Button) findViewById(R.id.btn_settings);
+        Button settings = findViewById(R.id.btn_settings);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,7 @@ public class AddCarActivity1 extends AppCompatActivity {
                 startActivity(settingsIntent);
             }
         });
-        Button dashboard = (Button) findViewById(R.id.btn_main);
+        Button dashboard = findViewById(R.id.btn_main);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,20 +122,37 @@ public class AddCarActivity1 extends AppCompatActivity {
                     yellow.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
-                if(blue.isChecked()) {
+                if (blue.isChecked()) {
                     newCar.setColor("Blue");
                     blue.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
-                if(purple.isChecked()) {
+                if (purple.isChecked()) {
                     newCar.setColor("Purple");
                     purple.setForeground(getResources().getDrawable(R.drawable.checked));
                 }
 
-                newCar.setBrand(brand.getText().toString());
-                newCar.setModel(model.getText().toString());
-                newCar.setFuel(fuel.getText().toString());
-                newCar.setKm(Double.parseDouble(km.getText().toString()));
+                if (brand.getText().length() == 0)
+                    brand.setError("Brand is required!");
+                else newCar.setBrand(brand.getText().toString());
+
+                if (model.getText().length() == 0)
+                    model.setError("Model is required");
+                else newCar.setModel(model.getText().toString());
+
+                if (fuel.getText().length() == 0)
+                    fuel.setError("Fuel is required");
+                else newCar.setFuel(fuel.getText().toString());
+
+                if (km.getText().length() == 0)
+                    km.setError("KM is required!");
+                else newCar.setKm(Double.parseDouble(km.getText().toString()));
+
+
+//                newCar.setBrand(brand.getText().length() == 0 ? brand.setError("Brand is required") : brand.getText().toString());
+//                newCar.setModel(model.getText().toString());
+//                newCar.setFuel(fuel.getText().toString());
+//                newCar.setKm(Double.parseDouble(km.getText().toString()));
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("NEW", newCar);

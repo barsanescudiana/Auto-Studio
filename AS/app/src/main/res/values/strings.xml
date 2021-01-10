@@ -1,5 +1,4 @@
 <resources>
-    <string name="server_client_id">876361170838-tot7m6d1n53atrmu3hr3p8ork34rn0ih.apps.googleusercontent.com</string>
     <string name="app_name">AutoStudio</string>
     <string name="car_list_hint">Car Name</string>
     <string name="car_list_details">Car details</string>
