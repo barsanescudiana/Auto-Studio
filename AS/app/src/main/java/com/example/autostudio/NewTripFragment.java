@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +27,8 @@ public class NewTripFragment extends DialogFragment {
     private static final String ARG_PARAM2 = "param2";
 
     private TextView close;
+    private Spinner car;
+    DatabaseAutoStudio databaseAutoStudio;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,8 +71,15 @@ public class NewTripFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         View view = inflater.inflate(R.layout.fragment_new_trip, container, false);
+
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(this.getContext());
+        car = view.findViewById(R.id.refill_car_spinner);
+
+        ArrayList<Car> cars = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
+        SpinnerAdapter adapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_item, cars, getLayoutInflater());
+
+        car.setAdapter(adapter);
 
         close = view.findViewById(R.id.close);
 

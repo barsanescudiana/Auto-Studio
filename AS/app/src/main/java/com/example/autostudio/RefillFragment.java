@@ -6,11 +6,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,9 +28,13 @@ public class RefillFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    Spinner car;
     SharedPreferences preferences;
 
+    DatabaseAutoStudio databaseAutoStudio;
+
     private TextView close;
+    private Button done;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,13 +78,30 @@ public class RefillFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_refill, container, false);
 
+        databaseAutoStudio = DatabaseAutoStudio.getInstance(view.getContext());
+
         close = view.findViewById(R.id.close);
+        car = view.findViewById(R.id.refill_car_spinner);
+
+        ArrayList<Car> cars = (ArrayList<Car>) databaseAutoStudio.getCarsDao().getAll();
+        SpinnerAdapter adapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_item, cars, getLayoutInflater());
+
+        car.setAdapter(adapter);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 assert getFragmentManager() != null;
                 getFragmentManager().beginTransaction().remove(RefillFragment.this).commit();
+            }
+        });
+
+        done = view.findViewById(R.id.button_done);
+
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
 

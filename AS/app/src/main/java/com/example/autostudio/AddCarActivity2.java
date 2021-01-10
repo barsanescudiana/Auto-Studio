@@ -16,7 +16,7 @@ import java.util.Date;
 public class AddCarActivity2 extends AppCompatActivity {
 
     EditText capacity, output, avg, rca, itp, tank;
-    Button save;
+    Button save, addCarNav;
     Car newCar = new Car();
 
     @Override

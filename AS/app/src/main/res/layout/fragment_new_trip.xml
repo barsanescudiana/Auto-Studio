@@ -40,13 +40,15 @@
             android:textSize="24sp"
             android:fontFamily="@font/salvatore_regular"
             android:gravity="center"
-            android:padding="30dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
             android:text="@string/insert_number_of_km" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
 
             <EditText
                 android:layout_width="120dp"
@@ -65,6 +67,37 @@
                 android:paddingStart="5dp"
                 android:text="@string/km"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:fontFamily="@font/salvatore_regular"
+                android:text="@string/car"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:id="@+id/refill_car_spinner"
+                android:layout_width="200dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/edit_text_bg"
+                android:fontFamily="@font/salvatore_regular"
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:textSize="16sp"
+                tools:ignore="RtlSymmetry"/>
+
         </LinearLayout>
 
         <Button

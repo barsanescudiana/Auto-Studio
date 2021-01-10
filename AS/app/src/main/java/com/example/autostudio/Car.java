@@ -180,6 +180,12 @@ public class Car implements Serializable {
         this.tankCapacity = tankCapacity;
     }
 
+    public String getDetails() {
+        String motor = getEngineCapacity() / 1000 + "." + getEngineCapacity() / 100 % 10;
+        String carDetails = getBrand() + " " + getModel() + " " + motor + " " + getEngineOutput() + "hp " + getFuel() + " " + getColor();
+        return carDetails;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
