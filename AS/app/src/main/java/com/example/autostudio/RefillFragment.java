@@ -71,7 +71,6 @@ public class RefillFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         preferences = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-
     }
 
     @Override
@@ -89,6 +88,9 @@ public class RefillFragment extends Fragment {
         SpinnerAdapter adapter = new SpinnerAdapter(this.getContext(), R.layout.spinner_item, cars, getLayoutInflater());
 
         car.setAdapter(adapter);
+
+        preferences = this.getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        car.setSelection(preferences.getInt("CAR_INDEX", 0));
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
