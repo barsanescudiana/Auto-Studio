@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Car.class, Event.class}, version = 12, exportSchema = false)
+@Database(entities = {Car.class, Event.class}, version = 13, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class DatabaseAutoStudio extends RoomDatabase {
     private final static String DB_NAME = "dbAutoStudio.db";

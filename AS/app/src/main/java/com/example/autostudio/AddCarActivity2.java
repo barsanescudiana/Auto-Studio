@@ -44,11 +44,7 @@ public class AddCarActivity2 extends AppCompatActivity {
                 newCar.setEngineCapacity(Integer.parseInt(capacity.getText().toString()));
                 newCar.setEngineOutput(Integer.parseInt(output.getText().toString()));
                 newCar.setAvgConsumption(Double.parseDouble(avg.getText().toString()));
-//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-//                Date
-//                String newDate = sdf.format(rca.getText().toString());
                 newCar.setExpDateRCA(new Date(rca.getText().toString()));
-//                newDate = sdf.format(itp.getText().toString());
                 newCar.setExpDateITP(new Date(itp.getText().toString()));
                 newCar.setTankCapacity(Double.parseDouble(tank.getText().toString()));
                 Log.e("newCar object: ", newCar.toString());
